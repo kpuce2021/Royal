@@ -29,9 +29,9 @@ function PoseNet() {
       console.log('loadinfo',test)
       //doc.addSheet({ headerValues: ['Name','X','Y']});
 
-      const sheet = doc.sheetsByIndex[0];
+      const sheet = doc.sheetsByIndex[1];
       console.log('sheet',sheet)
-      const result = await sheet.addRows(row);
+      const result = await sheet.addRow(row);
       //const addTest = await sheet.addRow({ Name: "new name", X: "new value", Y: "new value" })
       console.log('result',result)
       alert('입력이 완료 되었습니다!');
@@ -53,15 +53,21 @@ function PoseNet() {
       return pose;
     }).then(function(pose){
       console.log('pose',pose.keypoints[11]);
-      const newRow = [
-        { Name: pose.keypoints[11].part, X: pose.keypoints[11].position.x, Y: pose.keypoints[11].position.y },
-        { Name: pose.keypoints[12].part, X: pose.keypoints[12].position.x, Y: pose.keypoints[12].position.y },
-        { Name: pose.keypoints[13].part, X: pose.keypoints[13].position.x, Y: pose.keypoints[13].position.y },
-        { Name: pose.keypoints[14].part, X: pose.keypoints[14].position.x, Y: pose.keypoints[14].position.y },
-        { Name: pose.keypoints[15].part, X: pose.keypoints[15].position.x, Y: pose.keypoints[15].position.y },
-        { Name: pose.keypoints[16].part, X: pose.keypoints[16].position.x, Y: pose.keypoints[16].position.y },
-
-      ];
+      const newRow = { 
+        Name: "Squart",
+        X_leftHip: pose.keypoints[11].position.x, 
+        Y_leftHip: pose.keypoints[11].position.y,
+        X_rightHip: pose.keypoints[12].position.x,
+        Y_rightHip: pose.keypoints[12].position.y,
+        X_leftKnee: pose.keypoints[13].position.x,
+        Y_leftKnee: pose.keypoints[13].position.y,
+        X_rightKnee: pose.keypoints[14].position.x,
+        Y_rightKnee: pose.keypoints[14].position.y,
+        X_leftAnkle: pose.keypoints[15].position.x,
+        Y_leftAnkle: pose.keypoints[15].position.y,
+        X_rightAnkle: pose.keypoints[16].position.x,
+        Y_rightAnkle: pose.keypoints[16].position.y
+      }
       appendSpreadsheet(newRow);
     })
   }
