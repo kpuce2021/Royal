@@ -1,22 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+// 1. Install dependencies DONE
+// 2. Import dependencies DONE
+// 3. Setup webcam and canvas DONE
+// 4. Define references to those DONE
+// 5. Load posenet DONE
+// 6. Detect function DONE
+// 7. Drawing utilities from tensorflow DONE
+// 8. Draw functions DONE
+
+import "./App.css";
+import PoseDetect from '../src/component/PoseDetect'
 
 function App() {
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <PoseDetect />
       </header>
     </div>
   );
