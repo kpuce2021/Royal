@@ -3,6 +3,7 @@ import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
 import { drawKeypoints, drawSkeleton } from "./utilities";
+import axios from 'axios';
 
 function PoseDetect(){
   const webcamRef = useRef(null);
@@ -39,6 +40,13 @@ function PoseDetect(){
       const pose = await net.estimateSinglePose(video);
       console.log(pose);
 
+      axios.post('http://localhost:8080/',{
+        pose: pose.keypoints
+      }).then( res => {
+        console.log(res);
+      }).catch( err => {
+        console.log(err);
+      })
       drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
     }
   };
@@ -58,7 +66,7 @@ function PoseDetect(){
       <Webcam
         ref={webcamRef}
         style={{
-          //position: "absolute",
+          position: "absolute",
           marginLeft: "auto",
           marginRight: "auto",
           left: 0,
@@ -73,7 +81,7 @@ function PoseDetect(){
       <canvas
         ref={canvasRef}
         style={{
-          //position: "absolute",
+          position: "absolute",
           marginLeft: "auto",
           marginRight: "auto",
           left: 0,
