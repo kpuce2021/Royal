@@ -6,6 +6,8 @@ import axios from 'axios';
 
 function ImageDetect() {
   const [url, setUrl] = useState(null)
+  const [imgWidth, setimgWidth] = useState(0)
+  const [imgHeight, setimgHeight] = useState(0)
   const canvasRef = useRef(null);
 
   const onChange = (e) => {
@@ -14,7 +16,7 @@ function ImageDetect() {
   
   const runPosenet = async () => {
     const net = await posenet.load({
-      inputResolution: { width: 640, height: 480 },
+      //inputResolution: { width: 640, height: 480 },
       scale: 0.8,
     });
     //
@@ -24,26 +26,15 @@ function ImageDetect() {
   };
 
   const detect = async (net) => {
-    // if (
-    //   typeof webcamRef.current !== "undefined" &&
-    //   webcamRef.current !== null &&
-    //   webcamRef.current.video.readyState === 4
-    // ) {
-    //   // Get Video Properties
-    //   const video = webcamRef.current.video;
-    //   const videoWidth = webcamRef.current.video.videoWidth;
-    //   const videoHeight = webcamRef.current.video.videoHeight;
-
-    //   // Set video width
-    //   webcamRef.current.video.width = videoWidth;
-    //   webcamRef.current.video.height = videoHeight;
-
-      // Make Detections
-      const videoWidth = 640
-      const videoHeight = 480
       const video = document.getElementById('cat');
+      setimgWidth(video.width)
+      setimgHeight(video.height)
+
+      const videoWidth = video.width
+      const videoHeight = video.height
       const pose = await net.estimateSinglePose(video);
       console.log(pose);
+      console.log('detect',imgWidth, imgHeight)
 
       // axios.post('http://localhost:8080/',{
       //   pose: pose.keypoints
@@ -67,14 +58,18 @@ function ImageDetect() {
   //runPosenet();
 
   return(
+    console.log('test', imgWidth, imgHeight),
     <div>
-      <div style={{ position: 'absolute', top: 0, left: 0, right: 0 }}>
+      <div style={{ position: 'absolute', left: 0, }}>
         <div>Pose확인</div>
         <input type='file' onChange={onChange} />
         <button onClick={() => runPosenet() }>업로드</button>
       </div>
       <div style={{ display: 'flex', flexDirection: 'column'}}>
-        <img id='cat' alt='body' src={url} />
+        {
+          url && 
+          <img id='cat' alt='body' src={url} />
+        }
         <div style={{ 
           border: '1px solid red',
           position: "absolute",
@@ -82,21 +77,27 @@ function ImageDetect() {
           marginRight: "auto",
           textAlign: "center"
         }}>
-          <div>추정된 자세</div>
-          <canvas
-            ref={canvasRef}
-            style={{
-              position: "absolute",
-              marginLeft: "auto",
-              marginRight: "auto",
-              textAlign: "center",
-              top: 0,
-              left: -5,
-              zindex: 9,
-              width: 640,
-              height: 480,
-            }}
-          />
+          {
+            url && (
+              <>
+                <div>추정된 자세</div>
+                <canvas
+                  ref={canvasRef}
+                  style={{
+                    position: "absolute",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    textAlign: "center",
+                    top: 0,
+                    left: -5,
+                    zindex: 9,
+                    width: imgWidth,
+                    height: imgHeight,
+                  }}
+                />
+              </>
+            )
+          }
         </div>
       </div>
     </div>
