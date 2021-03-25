@@ -8,6 +8,7 @@ function ImageDetect() {
   const [url, setUrl] = useState(null)
   const [imgWidth, setimgWidth] = useState(0)
   const [imgHeight, setimgHeight] = useState(0)
+  const [poseDetect, setPoseDetect] = useState([])
   const canvasRef = useRef(null);
 
   const onChange = (e) => {
@@ -20,9 +21,10 @@ function ImageDetect() {
       scale: 0.8,
     });
     //
-    setInterval(() => {
-      detect(net);
-    }, 5000);
+    // setInterval(() => {
+    //   detect(net);
+    // }, 5000);
+    detect(net)
   };
 
   const detect = async (net) => {
@@ -34,15 +36,20 @@ function ImageDetect() {
       const videoHeight = video.height
       const pose = await net.estimateSinglePose(video);
       console.log(pose);
-      console.log('detect',imgWidth, imgHeight)
+      pose.keypoints.map(keypoint => {
+        console.log('testpose',keypoint)
+        setPoseDetect([...poseDetect, keypoint ])
+      })
 
-      // axios.post('http://localhost:8080/',{
-      //   pose: pose.keypoints
-      // }).then( res => {
-      //   console.log(res);
-      // }).catch( err => {
-      //   console.log(err);
-      // })
+      console.log(poseDetect)
+
+      axios.post('http://localhost:8080/',{
+        pose: pose.keypoints
+      }).then( res => {
+        console.log(res);
+      }).catch( err => {
+        console.log(err);
+      })
       drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
     }
   
@@ -58,7 +65,7 @@ function ImageDetect() {
   //runPosenet();
 
   return(
-    console.log('test', imgWidth, imgHeight),
+    console.log(poseDetect),
     <div>
       <div style={{ position: 'absolute', left: 0, }}>
         <div>Pose확인</div>
