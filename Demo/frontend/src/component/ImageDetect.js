@@ -18,7 +18,7 @@ function ImageDetect() {
   const runPosenet = async () => {
     const net = await posenet.load({
       //inputResolution: { width: 640, height: 480 },
-      scale: 0.8,
+      //scale: 0.8,
     });
     //
     // setInterval(() => {
@@ -34,7 +34,9 @@ function ImageDetect() {
 
       const videoWidth = video.width
       const videoHeight = video.height
-      const pose = await net.estimateSinglePose(video);
+      const pose = await net.estimateSinglePose(video,{
+        flipHorizontal: true
+      });
       console.log(pose);
       pose.keypoints.map(keypoint => {
         console.log('testpose',keypoint)
