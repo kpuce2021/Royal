@@ -34,13 +34,10 @@ function ImageDetect() {
 
       const videoWidth = video.width
       const videoHeight = video.height
-<<<<<<< Updated upstream
       const pose = await net.estimateSinglePose(video,{
         flipHorizontal: true
       });
-=======
       const pose = await net.estimateSinglePose(video,{flipHorizontal: true});
->>>>>>> Stashed changes
       console.log(pose);
       console.log('detect',imgWidth, imgHeight)
 
