@@ -8,7 +8,7 @@ function ImageDetect() {
   const [url, setUrl] = useState(null)
   const [imgWidth, setimgWidth] = useState(0)
   const [imgHeight, setimgHeight] = useState(0)
-  const [poseDetect, setPoseDetect] = useState([])
+  const [predict, setPredict] = useState('')
   const canvasRef = useRef(null);
 
   const onChange = (e) => {
@@ -21,9 +21,9 @@ function ImageDetect() {
       //scale: 0.8,
     });
     //
-    // setInterval(() => {
-    //   detect(net);
-    // }, 5000);
+    //setInterval(() => {
+    //  detect(net);
+    //}, 60000);
     detect(net)
   };
 
@@ -34,21 +34,21 @@ function ImageDetect() {
 
       const videoWidth = video.width
       const videoHeight = video.height
+<<<<<<< Updated upstream
       const pose = await net.estimateSinglePose(video,{
         flipHorizontal: true
       });
+=======
+      const pose = await net.estimateSinglePose(video,{flipHorizontal: true});
+>>>>>>> Stashed changes
       console.log(pose);
-      pose.keypoints.map(keypoint => {
-        console.log('testpose',keypoint)
-        setPoseDetect([...poseDetect, keypoint ])
-      })
-
-      console.log(poseDetect)
+      console.log('detect',imgWidth, imgHeight)
 
       axios.post('http://localhost:8080/',{
         pose: pose.keypoints
       }).then( res => {
         console.log(res);
+        setPredict(res.data)
       }).catch( err => {
         console.log(err);
       })
@@ -67,7 +67,7 @@ function ImageDetect() {
   //runPosenet();
 
   return(
-    console.log(poseDetect),
+    console.log('test', imgWidth, imgHeight),
     <div>
       <div style={{ position: 'absolute', left: 0, }}>
         <div>Pose확인</div>
@@ -90,6 +90,9 @@ function ImageDetect() {
             url && (
               <>
                 <div>추정된 자세</div>
+                {
+                  predict && <div>{`스쿼트 : ${predict} %`}</div> 
+                }
                 <canvas
                   ref={canvasRef}
                   style={{
