@@ -12,6 +12,7 @@ app.use(express.json())
 
 
 app.get('/', (req, res) => {
+  console.log('get 요청',req.body);
   res.send('Hello World!')
   var test = req
   //console.log('test', test);
@@ -34,8 +35,12 @@ app.post('/', (req, res) => {
   console.log('array',arrString)
   try{
     axios.post("http://127.0.0.1:8000",{ 'arrString' : arrString })
-           .then(data => res.status(200).send(data))
-           .catch(err => res.send(err));
+           .then(data => {
+            console.log(res);
+            res.status(200).send(data)
+           }).catch(err => 
+            res.send(err)
+           );
   }
   catch(err){
     console.error("GG", err);

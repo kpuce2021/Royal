@@ -11,6 +11,7 @@ import requests
 
 class IndexView(View):
     def get(self, request):
+        print("123123")
         """if request.method == 'GET':
             print('get 요청처리')
             url = 'http://localhost:8080'       
@@ -33,6 +34,7 @@ class IndexView(View):
     def post(self, request):
         #print('post 요청처리')
         data = json.loads(request.body) 
+        #print("###  Squart Score : ", data," %  ###")
         #irum = request.POST['arrString']
         pose = load_model.pose_squart(data['arrString'])
         print("###  Squart Score : ", pose," %  ###")
@@ -40,8 +42,9 @@ class IndexView(View):
         #print(irum)
         #return HttpResponse("Post 요청을 잘받았다")
         #return render(request, "http://localhost:8080",{"data": pose})
-        #return HttpResponseRedirect("http://localhost:8080", pose)
-        return HttpResponse('http://localhost:8080',{"data":pose})
+        #return JsonResponse("http://localhost:8080", {"data":pose})
+        return JsonResponse({"data":pose})
+        #return HttpResponse('http://localhost:8080/',{"data":pose})
 
     def put(self, request):
         return HttpResponse("Put 요청을 잘받았다")
