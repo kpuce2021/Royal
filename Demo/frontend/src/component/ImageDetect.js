@@ -37,7 +37,6 @@ function ImageDetect() {
       const pose = await net.estimateSinglePose(video,{
         flipHorizontal: true
       });
-      const pose = await net.estimateSinglePose(video,{flipHorizontal: true});
       console.log(pose);
       console.log('detect',imgWidth, imgHeight)
 
@@ -49,6 +48,14 @@ function ImageDetect() {
       }).catch( err => {
         console.log(err);
       })
+      // axios.post('http://127.0.0.1:8000',{
+      //   pose: pose.keypoints
+      // }).then( res => {
+      //   console.log(res);
+      //   setPredict(res.data)
+      // }).catch( err => {
+      //   console.log(err);
+      // })
       drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
     }
   
