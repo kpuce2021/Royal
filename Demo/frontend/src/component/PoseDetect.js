@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useState, useRef } from "react"
 import * as tf from "@tensorflow/tfjs";
 import * as posenet from "@tensorflow-models/posenet";
 import Webcam from "react-webcam";
@@ -8,6 +8,7 @@ import axios from 'axios';
 function PoseDetect(){
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
+  const [predict, setPredict] = useState('')
 
   //  Load posenet
   const runPosenet = async () => {
@@ -18,7 +19,7 @@ function PoseDetect(){
     //
     setInterval(() => {
       detect(net);
-    }, 500);
+    }, 1000);
   };
 
   const detect = async (net) => {
@@ -40,20 +41,14 @@ function PoseDetect(){
       const pose = await net.estimateSinglePose(video);
       console.log(pose);
 
-      axios.post('http://localhost:8080/',{
+      axios.post('http://localhost:8081/',{
         pose: pose.keypoints
       }).then( res => {
+        setPredict(res.data)
         console.log(res);
       }).catch( err => {
         console.log(err);
       })
-      // axios.post('http://127.0.0.1:8000',{
-      //   pose: pose.keypoints
-      // }).then( res => {
-      //   console.log(res);
-      // }).catch( err => {
-      //   console.log(err);
-      // })
       drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
     }
   };
@@ -84,8 +79,27 @@ function PoseDetect(){
           height: 480,
         }}
       />
-
-      <canvas
+      <>
+                <div>추정된 자세</div>
+                {
+                  predict && <div>{`스쿼트 : ${predict} %`}</div> 
+                }
+                <canvas
+                  ref={canvasRef}
+                  style={{
+                    position: "absolute",
+                    marginLeft: "auto",
+                    marginRight: "auto",
+                    textAlign: "center",
+                    top: 0,
+                    left: -5,
+                    zindex: 9,
+                    width: 640,
+                    height: 480,
+                  }}
+                />
+              </>
+      {/* <canvas
         ref={canvasRef}
         style={{
           position: "absolute",
@@ -98,7 +112,7 @@ function PoseDetect(){
           width: 640,
           height: 480,
         }}
-      />
+      /> */}
     </div>
   )
 }

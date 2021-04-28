@@ -1,7 +1,7 @@
 const express = require('express')
 const axios = require("axios");
 const app = express()
-const port = 8080
+const port = 8081
 const cors = require('cors');
 const bodyParser = require('body-parser')
 const spawn = require('child_process').spawn; 
@@ -36,8 +36,10 @@ app.post('/', (req, res) => {
   try{
     axios.post("http://127.0.0.1:8000",{ 'arrString' : arrString })
            .then(data => {
-            console.log(res);
-            res.status(200).send(data)
+            const dedect = data.data;
+            console.log('django detect : ', dedect);
+            //res.status(200).send(dedect)
+            res.send(dedect.toString())
            }).catch(err => 
             res.send(err)
            );
@@ -45,6 +47,7 @@ app.post('/', (req, res) => {
   catch(err){
     console.error("GG", err);
   }
+  
   /*
   const result = spawn('python', ['load_model.py', arrString]); 
   // stdout의 'data'이벤트리스너로 실행결과를 받는다

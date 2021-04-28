@@ -40,22 +40,14 @@ function ImageDetect() {
       console.log(pose);
       console.log('detect',imgWidth, imgHeight)
 
-      axios.post('http://localhost:8080/',{
+      axios.post('http://localhost:8081/',{
         pose: pose.keypoints
       }).then( res => {
-        console.log(res);
+        console.log("backend 응답",res);
         setPredict(res.data)
       }).catch( err => {
         console.log(err);
       })
-      // axios.post('http://127.0.0.1:8000',{
-      //   pose: pose.keypoints
-      // }).then( res => {
-      //   console.log(res);
-      //   setPredict(res.data)
-      // }).catch( err => {
-      //   console.log(err);
-      // })
       drawCanvas(pose, video, videoWidth, videoHeight, canvasRef);
     }
   
