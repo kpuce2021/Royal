@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, ImageBackground, StyleSheet, TextInput, TouchableOpacity } from "react-native";
-import Image from './Images/imgExercise3.jpg'
+import Image from '../Images/imgExercise3.jpg'
 
 const styles = StyleSheet.create({
   container: {

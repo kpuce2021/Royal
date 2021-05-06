@@ -1,90 +1,92 @@
-import React from "react";
-import { Text, View, ImageBackground, StyleSheet, TextInput, TouchableOpacity } from "react-native";
-import Image from './Images/imgExercise3.jpg'
+import React, { useState } from 'react';
+import { View, Text } from 'react-native'
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+// import { createAppContainer, createSwitchNavigator } from 'react-navigation'
+// import { createStackNavigator } from 'react-navigation-stack';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+// import { createBottomTabNavigator } from 'react-navigation-tabs';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-  },
-  image: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
-    borderWidth: 1,
-  },
-  textBlue: {
-    color: "#2e64b0",
-    fontSize: 42,
-    fontWeight: "bold",
-    textAlign: "center",
-    //backgroundColor: "#000000a0"
-  },
-  textRed: {
-    color: "#c41f14",
-    fontSize: 42,
-    fontWeight: "bold",
-    textAlign: "center",
-    //backgroundColor: "#000000a0"
-  },
-  textStyles: {
-    marginTop: 10,
-    backgroundColor: '#ffffff',
-    marginBottom: 5,
-    borderRadius: 10
-  },
-  bigBlue: {
-    color: 'blue',
-    fontWeight: 'bold',
-    fontSize: 15,
-  },
-  black: {
-    color: 'black',
-  }
-});
+// ---- screens
+import Login from './screens/Login.js'
+import Splash from './screens/Splash.js'
+import Main from './screens/Main.js'
+import Icon from 'react-native-vector-icons/Ionicons';
 
-const App = () => (
-  <View style={styles.container}>
-    <ImageBackground source={Image} style={styles.image}>
-      <View style={{ width: '100%', backgroundColor: "#000000a0", flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={styles.textBlue}>Hello</Text>
-        <Text style={styles.textRed}>PT</Text>
-      </View>
-      
-      <View style={{ paddingHorizontal: 20 }}>
-        
-        <TextInput 
-          placeholder='아이디 입력'
-          style={styles.textStyles}>
-        </TextInput>
-        
-        <TextInput 
-          placeholder='비밀번호 입력'
-          secureTextEntry={true}
-          style={styles.black, styles.textStyles}>
-        </TextInput>
+function SignUp(){
+  return(
+    <View>
+      <Text>회원가입</Text>
+    </View>
+  )
+}
+function Home() {
+  return(
+    <View>
+      <Text>home</Text>
+    </View>
+  )
+}
+function test() {
+  return(
+    <View>
+      <Text>측정</Text>
+    </View>
+  )
+}
 
-        <TouchableOpacity
-          style={{ 
-            backgroundColor: '#f00e61', 
-            padding: 20, 
-            borderWidth: 1, 
-            borderColor: '#f00e61',
-            justifyContent: 'center', 
-            alignItems: 'center', 
-            borderRadius: 10,
-            marginTop: 10}}>
-          <Text style={{ color: 'white', fontSize: 20}}>로그인</Text>
-        </TouchableOpacity>
+function calendar() {
+  return(
+    <View>
+      <Text>캘린더</Text>
+    </View>
+  )
+}
 
-        <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
-          <Text style={{fontSize: 20, fontWeight: 'bold', color: '#d914c5'}}>아이디&비밀번호 찾기</Text>
-          <Text style={{fontSize: 20, fontWeight: 'bold', color: '#d914c5'}}>회원가입 하기</Text>
-        </View>
+function Post() {
+  return(
+    <View>
+      <Text>포스트</Text>
+    </View>
+  )
+}
 
-      </View>
-    </ImageBackground>
-  </View>
-)
-
-export default App;
+function Profile() {
+  return(
+    <View>
+      <Text>프로필</Text>
+    </View>
+  )
+}
+function LoginStack() {
+  const Stack = createStackNavigator();
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Login" component={Login} options={{ tabBarVisible: false}}/>
+      <Stack.Screen name="SignUp" component={SignUp} />
+    </Stack.Navigator>
+  )
+}
+function BottomTab() {
+  const Tab = createBottomTabNavigator();
+  return(
+    <Tab.Navigator>
+      <Tab.Screen name="홈" component={Home}/>
+      <Tab.Screen name="측정" component={test} />
+      <Tab.Screen name="캘린더" component={calendar}/>
+      <Tab.Screen name="게시판" component={Post}/>
+      <Tab.Screen name="프로필" component={Profile}/>
+    </Tab.Navigator>
+  )
+}
+export default function App() {
+  const [isTocken, setTocken] = useState(true)
+  return(
+    <NavigationContainer>
+      {
+        isTocken ? <LoginStack /> : <BottomTab />
+      }
+    </NavigationContainer>
+  )
+}
