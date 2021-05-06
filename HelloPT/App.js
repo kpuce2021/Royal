@@ -1,112 +1,90 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
+import React from "react";
+import { Text, View, ImageBackground, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import Image from './Images/imgExercise3.jpg'
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    flexDirection: "column",
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+    borderWidth: 1,
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  textBlue: {
+    color: "#2e64b0",
+    fontSize: 42,
+    fontWeight: "bold",
+    textAlign: "center",
+    //backgroundColor: "#000000a0"
   },
-  highlight: {
-    fontWeight: '700',
+  textRed: {
+    color: "#c41f14",
+    fontSize: 42,
+    fontWeight: "bold",
+    textAlign: "center",
+    //backgroundColor: "#000000a0"
   },
+  textStyles: {
+    marginTop: 10,
+    backgroundColor: '#ffffff',
+    marginBottom: 5,
+    borderRadius: 10
+  },
+  bigBlue: {
+    color: 'blue',
+    fontWeight: 'bold',
+    fontSize: 15,
+  },
+  black: {
+    color: 'black',
+  }
 });
+
+const App = () => (
+  <View style={styles.container}>
+    <ImageBackground source={Image} style={styles.image}>
+      <View style={{ width: '100%', backgroundColor: "#000000a0", flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+        <Text style={styles.textBlue}>Hello</Text>
+        <Text style={styles.textRed}>PT</Text>
+      </View>
+      
+      <View style={{ paddingHorizontal: 20 }}>
+        
+        <TextInput 
+          placeholder='아이디 입력'
+          style={styles.textStyles}>
+        </TextInput>
+        
+        <TextInput 
+          placeholder='비밀번호 입력'
+          secureTextEntry={true}
+          style={styles.black, styles.textStyles}>
+        </TextInput>
+
+        <TouchableOpacity
+          style={{ 
+            backgroundColor: '#f00e61', 
+            padding: 20, 
+            borderWidth: 1, 
+            borderColor: '#f00e61',
+            justifyContent: 'center', 
+            alignItems: 'center', 
+            borderRadius: 10,
+            marginTop: 10}}>
+          <Text style={{ color: 'white', fontSize: 20}}>로그인</Text>
+        </TouchableOpacity>
+
+        <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
+          <Text style={{fontSize: 20, fontWeight: 'bold', color: '#d914c5'}}>아이디&비밀번호 찾기</Text>
+          <Text style={{fontSize: 20, fontWeight: 'bold', color: '#d914c5'}}>회원가입 하기</Text>
+        </View>
+
+      </View>
+    </ImageBackground>
+  </View>
+)
 
 export default App;
