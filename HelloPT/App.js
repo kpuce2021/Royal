@@ -21,21 +21,14 @@ function SignUp(){
     </View>
   )
 }
-function Home() {
-  return(
-    <View>
-      <Text>home</Text>
-    </View>
-  )
-}
-function test() {
+
+function Detect() {
   return(
     <View>
       <Text>측정</Text>
     </View>
   )
 }
-
 function calendar() {
   return(
     <View>
@@ -59,6 +52,14 @@ function Profile() {
     </View>
   )
 }
+function HomeStack() {
+  const Stack = createStackNavigator();
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Home" component={Main} />
+    </Stack.Navigator>
+  )
+}
 function LoginStack() {
   const Stack = createStackNavigator();
   return (
@@ -72,8 +73,8 @@ function BottomTab() {
   const Tab = createBottomTabNavigator();
   return(
     <Tab.Navigator>
-      <Tab.Screen name="홈" component={Home}/>
-      <Tab.Screen name="측정" component={test} />
+      <Tab.Screen name="홈" component={HomeStack}/>
+      <Tab.Screen name="측정" component={Detect} />
       <Tab.Screen name="캘린더" component={calendar}/>
       <Tab.Screen name="게시판" component={Post}/>
       <Tab.Screen name="프로필" component={Profile}/>
@@ -81,7 +82,7 @@ function BottomTab() {
   )
 }
 export default function App() {
-  const [isTocken, setTocken] = useState(true)
+  const [isTocken, setTocken] = useState(false)
   return(
     <NavigationContainer>
       {

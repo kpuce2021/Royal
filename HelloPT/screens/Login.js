@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const App = () => (
+const Login = ({ navigation }) => (
   <View style={styles.container}>
     <ImageBackground source={Image} style={styles.image}>
       <View style={{ width: '100%', backgroundColor: "#000000a0", flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
@@ -65,9 +65,10 @@ const App = () => (
         </TextInput>
 
         <TouchableOpacity
+          onPress={()=> navigation.navigate('Splash')}
           style={{ 
             backgroundColor: '#f00e61', 
-            padding: 20, 
+            padding: 10, 
             borderWidth: 1, 
             borderColor: '#f00e61',
             justifyContent: 'center', 
@@ -78,8 +79,8 @@ const App = () => (
         </TouchableOpacity>
 
         <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
-          <Text style={{fontSize: 20, fontWeight: 'bold', color: '#d914c5'}}>아이디&비밀번호 찾기</Text>
-          <Text style={{fontSize: 20, fontWeight: 'bold', color: '#d914c5'}}>회원가입 하기</Text>
+          <Text style={{fontSize: 15, color: '#ffffff'}}>아이디&비밀번호 찾기</Text>
+          <Text style={{fontSize: 15, color: '#ffffff'}}>회원가입 하기</Text>
         </View>
 
       </View>
@@ -87,4 +88,4 @@ const App = () => (
   </View>
 )
 
-export default App;
+export default Login;

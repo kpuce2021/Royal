@@ -10,7 +10,7 @@ function Splash() {
     // </View> 
     <WebView
       style={{ width:'100%', height: '100%', borderWidth: 1, borderColor: 'red'}}
-      source={{ uri: 'https://www.naver.com/' }} />
+      source={{ uri: 'https://pensive-cori-825c30.netlify.app/' }} />
   )
 }
 
