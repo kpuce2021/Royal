@@ -8,7 +8,7 @@ function ImageDetect() {
   const [url, setUrl] = useState(null)
   const [imgWidth, setimgWidth] = useState(0)
   const [imgHeight, setimgHeight] = useState(0)
-  const [poseDetect, setPoseDetect] = useState([])
+  const [predict, setPredict] = useState('')
   const canvasRef = useRef(null);
 
   const onChange = (e) => {
@@ -18,12 +18,12 @@ function ImageDetect() {
   const runPosenet = async () => {
     const net = await posenet.load({
       //inputResolution: { width: 640, height: 480 },
-      scale: 0.8,
+      //scale: 0.8,
     });
     //
-    // setInterval(() => {
-    //   detect(net);
-    // }, 5000);
+    //setInterval(() => {
+    //  detect(net);
+    //}, 60000);
     detect(net)
   };
 
@@ -34,19 +34,17 @@ function ImageDetect() {
 
       const videoWidth = video.width
       const videoHeight = video.height
-      const pose = await net.estimateSinglePose(video);
+      const pose = await net.estimateSinglePose(video,{
+        flipHorizontal: true
+      });
       console.log(pose);
-      pose.keypoints.map(keypoint => {
-        console.log('testpose',keypoint)
-        setPoseDetect([...poseDetect, keypoint ])
-      })
+      console.log('detect',imgWidth, imgHeight)
 
-      console.log(poseDetect)
-
-      axios.post('http://localhost:8080/',{
+      axios.post('http://localhost:8081/',{
         pose: pose.keypoints
       }).then( res => {
-        console.log(res);
+        console.log("backend 응답",res);
+        setPredict(res.data)
       }).catch( err => {
         console.log(err);
       })
@@ -65,7 +63,7 @@ function ImageDetect() {
   //runPosenet();
 
   return(
-    console.log(poseDetect),
+    console.log('test', imgWidth, imgHeight),
     <div>
       <div style={{ position: 'absolute', left: 0, }}>
         <div>Pose확인</div>
@@ -88,6 +86,9 @@ function ImageDetect() {
             url && (
               <>
                 <div>추정된 자세</div>
+                {
+                  predict && <div>{`스쿼트 : ${predict} %`}</div> 
+                }
                 <canvas
                   ref={canvasRef}
                   style={{
