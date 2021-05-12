@@ -34,7 +34,7 @@ app.post('/', (req, res) => {
   const arrString = test.join()
   console.log('array',arrString)
   try{
-    axios.post("http://ec2-3-35-182-6.ap-northeast-2.compute.amazonaws.com:8000",{ 'arrString' : arrString })
+    axios.post("http://ec2-13-125-28-252.ap-northeast-2.compute.amazonaws.com:8081",{ 'arrString' : arrString })
            .then(data => {
             const dedect = data.data;
             console.log('django detect : ', dedect);

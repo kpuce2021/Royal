@@ -1,6 +1,7 @@
 import React from "react";
-import { Text, View, ImageBackground, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import { StyleSheet } from "react-native";
 import Image from '../Images/imgExercise3.jpg'
+import Input from '../components/Input/Input'
 
 const styles = StyleSheet.create({
   container: {
@@ -18,14 +19,12 @@ const styles = StyleSheet.create({
     fontSize: 42,
     fontWeight: "bold",
     textAlign: "center",
-    //backgroundColor: "#000000a0"
   },
   textRed: {
     color: "#c41f14",
     fontSize: 42,
     fontWeight: "bold",
     textAlign: "center",
-    //backgroundColor: "#000000a0"
   },
   textStyles: {
     marginTop: 10,
@@ -43,7 +42,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const Login = ({ navigation }) => (
+function Login(props){
+  return (
   <View style={styles.container}>
     <ImageBackground source={Image} style={styles.image}>
       <View style={{ width: '100%', backgroundColor: "#000000a0", flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
@@ -65,7 +65,6 @@ const Login = ({ navigation }) => (
         </TextInput>
 
         <TouchableOpacity
-          onPress={()=> navigation.navigate('Splash')}
           style={{ 
             backgroundColor: '#f00e61', 
             padding: 10, 
@@ -80,12 +79,13 @@ const Login = ({ navigation }) => (
 
         <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
           <Text style={{fontSize: 15, color: '#ffffff'}}>아이디&비밀번호 찾기</Text>
-          <Text style={{fontSize: 15, color: '#ffffff'}}>회원가입 하기</Text>
+          <Text onPress={() => props.navigation.navigate('SignUp', { userId: 'user', password: '1234' })} style={{fontSize: 15, color: '#ffffff'}}>회원가입 하기</Text>
         </View>
 
       </View>
     </ImageBackground>
   </View>
-)
+  )
+}
 
 export default Login;
