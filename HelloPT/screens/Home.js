@@ -1,5 +1,4 @@
 import React from 'react'
-import { View, Text, ScrollView,ToastAndroid, ProgressViewIOSComponent, TouchableOpacity } from 'react-native'
 import Header from '../components/Header/Header'
 
 function Home({ navigation }) {
@@ -15,7 +14,7 @@ function Home({ navigation }) {
       <Header navigation={navigation}/>
       <ScrollView style={{ flex: 1 }}>
         <MainAd />
-        <Text>test</Text>
+        <Text onPress={() => navigation.navigate('Detect', { screen: 'Detect'})}>test</Text>
       </ScrollView>
     </View>
   )

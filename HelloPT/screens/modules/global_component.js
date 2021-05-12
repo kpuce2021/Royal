@@ -6,12 +6,16 @@ import {
   Button,
   TextInput,
   TouchableOpacity,
+  TouchableWithoutFeedback,
+  Switch,
   Image,
+  Touchable,
   ScrollView,
   SafeAreaView,
   FlatList,
   Platform,
-  ToastAndroid
+  ToastAndroid,
+  ImageBackground
 } from 'react-native'
 
 global.React = React
@@ -29,3 +33,6 @@ global.ScrollView = ScrollView
 global.FlatList = FlatList
 global.SafeAreaView = SafeAreaView
 global.ToastAndroid = ToastAndroid
+global.ImageBackground = ImageBackground
+global.TouchableWithoutFeedback = TouchableWithoutFeedback
+global.Switch = Switch
