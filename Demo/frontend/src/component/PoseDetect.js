@@ -71,7 +71,8 @@ function PoseDetect(){
           position: "absolute",
           marginLeft: "auto",
           marginRight: "auto",
-          left: 0,
+          top: 50,
+          left: 200,
           right: 0,
           textAlign: "center",
           zindex: 9,
@@ -80,9 +81,9 @@ function PoseDetect(){
         }}
       />
       <>
-                <div>추정된 자세</div>
+                <div style={{position: "absolute", top:0, left:10, width:150, height:60, zIndex:20}}>추정된 자세</div>
                 {
-                  predict && <div>{`스쿼트 : ${predict} %`}</div> 
+                  predict && <div style={{position: "absolute", top:30, left:10, width:180, height:60, zIndex:20}}>{`스쿼트 : ${predict} %`}</div> 
                 }
                 <canvas
                   ref={canvasRef}
@@ -91,8 +92,9 @@ function PoseDetect(){
                     marginLeft: "auto",
                     marginRight: "auto",
                     textAlign: "center",
-                    top: 0,
-                    left: -5,
+                    top: 50,
+                    left: 200,
+                    right: 0,
                     zindex: 9,
                     width: 640,
                     height: 480,

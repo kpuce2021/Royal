@@ -10,12 +10,13 @@ import tensorflow as tf
 import pandas as pd
 import efficientnet.tfkeras
 from tensorflow.keras.models import load_model
+loaded_model = tf.keras.models.load_model('squart_lunge_demo_v1.2')
 
 def pose_squart(location):
     
     #start = time.time()  # 시작 시간 저장
 
-    loaded_model = tf.keras.models.load_model('squart_lunge_demo_v1.2')
+    
 
     #print("time :", time.time() - start)  # 현재시각 - 시작시간 = 실행 시간
 

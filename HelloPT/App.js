@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, { useState } from 'react';
 import { View, Text } from 'react-native'
 import 'react-native-gesture-handler';
@@ -91,3 +92,40 @@ export default function App() {
     </NavigationContainer>
   )
 }
+=======
+import React from "react";
+import { ImageBackground, ImageStore, StyleSheet, Text, View } from "react-native";
+
+
+const App = () => (
+  <ImageBackground style={ styles.imgBackground } 
+                 resizeMode='cover' 
+                 source={require('../images/pg1.png')}>
+</ImageBackground>
+);
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column"
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
+  },
+
+
+  text: {
+    color: "white",
+    fontSize: 42,
+    fontWeight: "bold",
+    textAlign: "center",
+    backgroundColor: "#000000a0"
+  }
+});
+
+
+
+export default App;
+>>>>>>> Stashed changes

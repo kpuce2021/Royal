@@ -10,7 +10,7 @@ import tensorflow as tf
 import pandas as pd
 import efficientnet.tfkeras
 from tensorflow.keras.models import load_model
-loaded_model = tf.keras.models.load_model(r'C:\Users\user\Desktop\Royal\Demo\rest_api\squart_lunge_demo_v1.2')
+loaded_model = tf.keras.models.load_model(r'C:\Users\Administrator\Documents\Royal\Demo\rest_api\squart_lunge_demo_v1.2')
 
 def pose_squart(location):
     
