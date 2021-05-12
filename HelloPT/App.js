@@ -11,7 +11,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // ---- screens
 import Login from './screens/Login.js'
 import Splash from './screens/Splash.js'
-import Main from './screens/Main.js'
+import Home from './screens/Home.js'
 import Icon from 'react-native-vector-icons/Ionicons';
 
 function SignUp(){
@@ -55,8 +55,8 @@ function Profile() {
 function HomeStack() {
   const Stack = createStackNavigator();
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Main} />
+    <Stack.Navigator headerMode='none'>
+      <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   )
 }
@@ -73,11 +73,11 @@ function BottomTab() {
   const Tab = createBottomTabNavigator();
   return(
     <Tab.Navigator>
-      <Tab.Screen name="홈" component={HomeStack}/>
-      <Tab.Screen name="측정" component={Detect} />
-      <Tab.Screen name="캘린더" component={calendar}/>
-      <Tab.Screen name="게시판" component={Post}/>
-      <Tab.Screen name="프로필" component={Profile}/>
+      <Tab.Screen name="Main" component={HomeStack} options={{ title: '홈'}}/>
+      <Tab.Screen name="Detect" component={Detect} options={{ title: '측정'}}/>
+      <Tab.Screen name="Calendar" component={calendar} options={{ title: '캘린더'}}/>
+      <Tab.Screen name="Posts" component={Post} options={{ title: '게시판'}}/>
+      <Tab.Screen name="Profile" component={Profile} options={{ title: '프로필'}}/>
     </Tab.Navigator>
   )
 }
