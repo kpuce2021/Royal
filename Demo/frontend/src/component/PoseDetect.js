@@ -19,7 +19,7 @@ function PoseDetect(){
     //
     setInterval(() => {
       detect(net);
-    }, 1000);
+    }, 5000);
   };
 
   const detect = async (net) => {
@@ -74,30 +74,43 @@ function PoseDetect(){
           top: 50,
           left: 200,
           right: 0,
+          top: 0,
           textAlign: "center",
           zindex: 9,
-          width: 640,
-          height: 480,
+          width: '100%',
         }}
       />
       <>
+<<<<<<< Updated upstream
                 <div style={{position: "absolute", top:0, left:10, width:150, height:60, zIndex:20}}>추정된 자세</div>
                 {
                   predict && <div style={{position: "absolute", top:30, left:10, width:180, height:60, zIndex:20}}>{`스쿼트 : ${predict} %`}</div> 
                 }
+=======
+                <div>추정된 자세</div>
+                {/* {
+                  predict && <div>{`스쿼트 : ${predict} %`}</div> 
+                } */}
+                <div style={{ position: 'absolute', top: 10 }}>{`스쿼트 : ${predict}`}</div>
+>>>>>>> Stashed changes
                 <canvas
                   ref={canvasRef}
                   style={{
                     position: "absolute",
                     marginLeft: "auto",
                     marginRight: "auto",
+                    left: 0,
+                    right: 0,
+                    top: 100,
                     textAlign: "center",
+<<<<<<< Updated upstream
                     top: 50,
                     left: 200,
                     right: 0,
+=======
+>>>>>>> Stashed changes
                     zindex: 9,
-                    width: 640,
-                    height: 480,
+                    width: '100%',
                   }}
                 />
               </>
