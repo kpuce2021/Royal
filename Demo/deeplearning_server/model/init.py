@@ -1,0 +1,1 @@
+from deeplearning_server.models.load_model import pose_squart
