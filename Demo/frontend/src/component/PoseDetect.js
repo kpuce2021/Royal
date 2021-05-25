@@ -39,7 +39,7 @@ function PoseDetect(){
 
       // Make Detections
       const pose = await net.estimateSinglePose(video);
-      console.log(pose);
+      //console.log(pose);
 
       axios.post('http://localhost:8081/',{
         pose: pose.keypoints
@@ -72,7 +72,7 @@ function PoseDetect(){
           marginLeft: "auto",
           marginRight: "auto",
           top: 50,
-          left: 200,
+          left: 0,
           right: 0,
           top: 0,
           textAlign: "center",
@@ -81,11 +81,11 @@ function PoseDetect(){
         }}
       />
       <>
-                <div>추정된 자세</div>
+                <div style={{ position: 'absolute', top: 10, left:0 }}>추정된 자세</div>
                 {/* {
                   predict && <div>{`스쿼트 : ${predict} %`}</div> 
                 } */}
-                <div style={{ position: 'absolute', top: 10 }}>{`스쿼트 : ${predict}`}</div>
+                <div style={{ position: 'absolute', top: 40, left:0 }}>{`스쿼트 : ${predict}`}</div>
                 <canvas
                   ref={canvasRef}
                   style={{
