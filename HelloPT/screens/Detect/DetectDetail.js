@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Switch, TouchableWithoutFeedback } from 'react-native'
+import { Switch, TouchableWithoutFeedback, PermissionsAndroid } from 'react-native'
 import Header from '../../components/Header/Header'
 
 function DetectDetail(props) {
@@ -11,6 +11,32 @@ function DetectDetail(props) {
   const toggleRecord = () => {
     setIsRecord(!isRecord)
   }
+
+  const requestCameraPermission = async () => {
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: "Cool Photo App Camera Permission",
+          message:
+            "Cool Photo App needs access to your camera " +
+            "so you can take awesome pictures.",
+          buttonNeutral: "Ask Me Later",
+          buttonNegative: "Cancel",
+          buttonPositive: "OK"
+        }
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log("You can use the camera");
+        navigation.navigate('Splash')
+      } else {
+        console.log("Camera permission denied");
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
   return(
     console.log(props),
     <View style={{ flex: 1, backgroundColor: '#ffffff',}}>
@@ -59,11 +85,11 @@ function DetectDetail(props) {
           </View>
         </View>
         
-        <View style={{ marginTop: 20, backgroundColor: '#9e1111', borderRadius: 5, height: 50 , justifyContent: 'center', alignItems: 'center'}}> 
-          <TouchableWithoutFeedback onPress={()=> props.navigation.navigate('Splash')}>
+        <TouchableWithoutFeedback onPress={()=> props.navigation.navigate('Splash')}>
+          <View style={{ marginTop: 20, backgroundColor: '#9e1111', borderRadius: 5, height: 50 , justifyContent: 'center', alignItems: 'center'}}> 
             <Text style={{ color: '#ffffff'}}>측정하기</Text>
-          </TouchableWithoutFeedback>
-        </View>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     </View>
   )

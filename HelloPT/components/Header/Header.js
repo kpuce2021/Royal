@@ -2,6 +2,8 @@ import React from 'react';
 import { ToastAndroid, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'
 
+Icon.loadFont()
+
 function Header({ navigation, mode, title}) {
   if(mode === 'stack'){
     return (
