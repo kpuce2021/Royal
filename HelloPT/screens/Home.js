@@ -1,5 +1,7 @@
 import React from 'react'
 import Header from '../components/Header/Header'
+import Button from '../components/Button/Button'
+import Spacer from '../components/Spacer/Spacer'
 
 function Home({ navigation }) {
   const showToast = () => {
@@ -25,19 +27,16 @@ export default Home
 
 function MainAd() {
   return(
-    <View>
+    <View style={{ padding: 20 }}>
       <Text>운동 루틴을 추가해보세요!</Text>
-      <Text>본인의 운동 루틴 제작</Text>
-      <TouchableOpacity
-        style={{ 
-          borderWidth: 1,
-          borderColor: 'red',
-          borderRadius: 10,
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}>
-        <Text>루틴 제작</Text>
-      </TouchableOpacity>
+      <Spacer top={10} />
+      <Text style={{ fontWeight: 'bold', fontSize: 30 }}>본인의 운동 루틴 제작</Text>
+      <Button 
+        text='루틴 제작'
+        padding={15}
+        back="#c0392b"
+        border="#c0392b"
+      />
     </View>
   )
 }

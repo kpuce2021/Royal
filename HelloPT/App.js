@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 import React, { useState } from 'react';
-=======
-import React, { useEffect, useState } from 'react';
->>>>>>> 2001102112cd3a4f142b375a8c3114a5d80e9ee7
 import { View, Text } from 'react-native'
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
@@ -100,49 +95,20 @@ function BottomTab() {
   )
 }
 export default function App() {
-  const [isTocken, setTocken] = useState(false)
+  const [isTocken, setTocken] = useState(true)
+  const Stack = createStackNavigator();
+  const onLogin = () => {
+    setTocken(true)
+  }
   return(
     <NavigationContainer>
-      {
-        isTocken ? <LoginStack /> : <BottomTab />
-      }
+      {/* {
+        isTocken ? <LoginStack onLogin={onLogin}/> : <BottomTab />
+      } */}
+      <Stack.Navigator headerMode='none'>
+        <Stack.Screen name="Login" component={LoginStack} />
+        <Stack.Screen name="Home" component={BottomTab} />
+      </Stack.Navigator>
     </NavigationContainer>
   )
 }
-=======
-import React from "react";
-import { ImageBackground, ImageStore, StyleSheet, Text, View } from "react-native";
-
-
-const App = () => (
-  <ImageBackground style={ styles.imgBackground } 
-                 resizeMode='cover' 
-                 source={require('../images/pg1.png')}>
-</ImageBackground>
-);
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column"
-  },
-  image: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center"
-  },
-
-
-  text: {
-    color: "white",
-    fontSize: 42,
-    fontWeight: "bold",
-    textAlign: "center",
-    backgroundColor: "#000000a0"
-  }
-});
-
-
-
-export default App;
->>>>>>> Stashed changes
