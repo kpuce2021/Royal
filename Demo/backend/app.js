@@ -1,5 +1,7 @@
 const express = require('express')
 const axios = require("axios");
+var db_config = require(__dirname + '/config/database.js');
+var conn = db_config.init();
 const app = express()
 const port = 8081
 const cors = require('cors');
@@ -9,10 +11,22 @@ const tf = require("@tensorflow/tfjs-node");
 //const tf = require("@tensorflow/tfjs");
 const {loadGraphModel} = require('@tensorflow/tfjs-converter');
 
+var challengeRouter = require('./routes/challenge');
+var exerciseRouter = require('./routes/exercise');
+var homeRouter = require('./routes/home');
+var loginRouter = require('./routes/login');
+var mypageRouter = require('./routes/mypage');
+
 app.use(cors());
 //app.use(bodyParser().json());
 app.use(express.json())
+db_config.connect(conn);
 
+//app.use('/challenge',challengeRouter);
+// app.use('/exercise',exerciseRouter);
+// app.use('/home',homeRouter);
+// app.use('/login',loginRouter);
+// app.use('/mypage',mypageRouter);
 
 app.get('/', (req, res) => {
   console.log('get 요청',req.body);
