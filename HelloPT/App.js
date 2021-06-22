@@ -16,14 +16,14 @@ import Home from './screens/Home.js'
 import Detect from './screens/Detect/Detect'
 import DetectDetail from './screens/Detect/DetectDetail'
 
-
-function SignUp(){
-  return(
-    <View>
-      <Text>회원가입</Text>
-    </View>
-  )
-}
+/* SignUp.js */
+// function SignUp(){
+//   return(
+//     <View>
+//       <Text>회원가입</Text>
+//     </View>
+//   )
+// }
 function calendar() {
   return(
     <View>
