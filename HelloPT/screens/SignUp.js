@@ -2,6 +2,9 @@ import React from "react";
 import { StyleSheet, ToastAndroid } from "react-native";
 import Image from '../Images/imgExercise3.jpg'
 import Input from '../components/Input/Input'
+import Button from '../components/Button/Button';
+import Spacer from "../components/Spacer/Spacer";
+
 
 const styles=StyleSheet.create({
     container: {
@@ -9,10 +12,9 @@ const styles=StyleSheet.create({
         flexDirection: "column",
       },
     textStyles: {
-        marginTop: 10,
         backgroundColor: '#ffffff',
-        marginBottom: 5,
-        borderRadius: 10
+        borderRadius: 10,
+        width: '100%'
       },
       textBlue: {
         color: "#2e64b0",
@@ -33,48 +35,63 @@ function SignUp(props) {
                 <Text style={styles.textBlue}>회원가입</Text>
             </View>
 
-            <View style={{ paddingHorizontal: 20 }}>
-
+            <View style={{ paddingHorizontal: 20, marginTop: 20 }}>
+              
+              <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10, justifyContent: 'center' }}>
                 <TextInput
-                    placeholder='아이디 입력'
-                    style={styles.textStyles}>
-                  </TextInput>
-
-                <TextInput 
-                  placeholder='비밀번호 입력'
-                  secureTextEntry={true}
-                  style={styles.black, styles.textStyles}>
+                  placeholder='아이디 입력'
+                  style={{backgroundColor: '#ffffff', borderRadius: 10, width: '80%'}}>
                 </TextInput>
-                
-                <TextInput 
-                  placeholder='비밀번호 다시 입력'
-                  secureTextEntry={true}
-                  style={styles.black, styles.textStyles}>
-                </TextInput>
+                <Spacer left={15} />
+                <Button text="중복확인" padding={13}/>
+              </View>
 
-                <TextInput 
-                  placeholder='이름 입력'
-                  secureTextEntry={true}
-                  style={styles.black, styles.textStyles}>
-                </TextInput>
+              <Spacer top={20} />
 
-                <TextInput 
-                  placeholder='이메일 입력'
-                  secureTextEntry={true}
-                  style={styles.black, styles.textStyles}>
-                </TextInput>
+              <TextInput 
+                placeholder='비밀번호 입력'
+                secureTextEntry={true}
+                style={styles.textStyles}>
+              </TextInput>
 
-                <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
+              <Spacer top={20} />
+              
+              <TextInput 
+                placeholder='비밀번호 다시 입력'
+                secureTextEntry={true}
+                style={styles.textStyles}>
+              </TextInput>
+
+              <Spacer top={20} />
+
+              <TextInput 
+                placeholder='이름 입력'
+                secureTextEntry={true}
+                style={styles.textStyles}>
+              </TextInput>
+
+              <Spacer top={20} />
+
+              <TextInput 
+                placeholder='이메일 입력'
+                secureTextEntry={true}
+                style={styles.textStyles}>
+              </TextInput>
+
+                {/* <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
                   <Text onPress={() => showToast()} style={{fontSize: 20, color: '#7989e8'}}>아이디 중복확인</Text>
                   <Text
                       onPress={() => props.navigation.navigate('Login', { userId: 'user', password: '1234' })} style={{fontSize: 20, color: '#7989e8'}}>
                       회원가입 완료
                   </Text>
+                </View> */}
+
+                <Spacer top={20} />
+                <View>
+                  <Button text='회원가입' padding={15} />
                 </View>
-
-      </View>
-
         </View>
+      </View>
     )
 }
 

@@ -11,12 +11,13 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 // ---- screens
 import Login from './screens/Login.js'
+import SignUp from './screens/SignUp'
 import Splash from './screens/Splash.js'
 import Home from './screens/Home.js'
 import Detect from './screens/Detect/Detect'
 import DetectDetail from './screens/Detect/DetectDetail'
 
-/* SignUp.js */
+
 // function SignUp(){
 //   return(
 //     <View>
