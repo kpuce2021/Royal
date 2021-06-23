@@ -1,22 +1,22 @@
-import React from 'react'
-import Header from '../components/Header/Header'
-import Button from '../components/Button/Button'
-import Spacer from '../components/Spacer/Spacer'
-import { Text } from 'react-native';
+import React from 'react';
+import Header from '../components/Header/Header';
+import Button from '../components/Button/Button';
+import Spacer from '../components/Spacer/Spacer';
+import {Text} from 'react-native';
 
-function Home({ navigation }) {
+function Home({navigation}) {
   const challenges = [
-    { id: 1, name: '홍길동'},
-    { id: 2, name: '홍길동'},
-    { id: 3, name: '홍길동'},
-  ]
+    {id: 1, name: '홍길동'},
+    {id: 2, name: '홍길동'},
+    {id: 3, name: '홍길동'},
+  ];
 
   const posts = [
-    { id: 1, title: 'test', content: 'test'},
-    { id: 2, title: 'test', content: 'test'},
-    { id: 3, title: 'test', content: 'test'},
-    { id: 4, title: 'test', content: 'test'},
-  ]
+    {id: 1, title: 'test', content: 'test'},
+    {id: 2, title: 'test', content: 'test'},
+    {id: 3, title: 'test', content: 'test'},
+    {id: 4, title: 'test', content: 'test'},
+  ];
   const showToast = () => {
     ToastAndroid.show("클릭되었습니다", ToastAndroid.SHORT);
   };

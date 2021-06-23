@@ -30,6 +30,7 @@ import EditProfile from './screens/EditProfile.js';
 function calendar() {
   return(
     <View>
+      <Header mode="plain" title="회원가입"/>
       <Text>캘린더</Text>
     </View>
   )
@@ -65,7 +66,7 @@ function LoginStack() {
   const Stack = createStackNavigator();
   return (
     <Stack.Navigator headerMode='none'>
-      <Stack.Screen name="Login" component={Login} options={{ tabBarVisible: false}}/>
+      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="SignUp" component={SignUp} />
     </Stack.Navigator>
   )
@@ -91,12 +92,32 @@ function DetectStack() {
 function BottomTab() {
   const Tab = createBottomTabNavigator();
   return(
-    <Tab.Navigator>
-      <Tab.Screen name="Main" component={HomeStack} options={{ title: '홈'}}/>
-      <Tab.Screen name="Detect" component={DetectStack} options={{ title: '측정'}}/>
-      <Tab.Screen name="Calendar" component={calendar} options={{ title: '캘린더'}}/>
-      <Tab.Screen name="Posts" component={Post} options={{ title: '게시판'}}/>
-      <Tab.Screen name="Profile" component={ProfileStack} options={{ title: '프로필'}}/>
+    <Tab.Navigator tabBarOptions={{ activeTintColor: "#2e64b0"}}>
+      <Tab.Screen name="Main" component={HomeStack} 
+        options={{ title: '홈', 
+          tabBarIcon: ({ focused, color, size}) => {
+            return focused ? <Icon name="home" size={25} color="#2e64b0"/> : <Icon name="home-outline" size={25} />
+      }}}/>
+      <Tab.Screen name="Detect" component={DetectStack} 
+        options={{ title: '측정', 
+          tabBarIcon: ({ focused, color, size }) => {
+            return focused ? <Icon name="body" size={25} color="#2e64b0"/> : <Icon name="body-outline" size={25} />
+        }}}/>
+      <Tab.Screen name="Calendar" component={calendar} 
+        options={{ title: '캘린더',
+          tabBarIcon: ({ focused, color, size }) => {
+            return focused ? <Icon name="calendar" size={25} color="#2e64b0"/> : <Icon name="calendar-outline" size={25} />
+        }}}/>
+      <Tab.Screen name="Posts" component={Post} 
+        options={{ title: '게시판',
+          tabBarIcon: ({ focused, color, size }) => {
+            return focused ? <Icon name="clipboard" size={25} color="#2e64b0" /> : <Icon name="clipboard-outline" size={25} />
+        }}}/>
+      <Tab.Screen name="Profile" component={Profile} 
+        options={{ title: '프로필',
+          tabBarIcon: ({ focused, color, size }) => {
+            return focused ? <Icon name="person-circle-sharp" size={25} color="#2e64b0" /> : <Icon name="person-circle-outline" size={25} />
+        }}}/>
     </Tab.Navigator>
   )
 }

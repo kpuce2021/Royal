@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToastAndroid, TouchableOpacity } from 'react-native';
+import { ToastAndroid, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign'
 
 Icon.loadFont()
@@ -23,6 +23,25 @@ function Header({ navigation, mode, title}) {
         </View>
         <View style={{ alignItems: 'center' }}>
           <Text>{title}</Text>
+        </View>
+        <View style={{ justifyContent: 'center', alignItems: 'flex-end'}}>
+          <View style={{ width: 30 }}/>
+        </View>
+      </View>
+    )
+  }
+  if(mode === 'plain'){
+    return(
+      <View style={{
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 50,
+        paddingHorizontal: 15,
+        borderBottomWidth: 1,
+        borderBottomColor: '#000000',
+      }}>
+        <View style={{ alignItems: 'center' }}>
+          <Text style={{ fontWeight:'bold', fontSize: 25 }}>{title}</Text>
         </View>
         <View style={{ justifyContent: 'center', alignItems: 'flex-end'}}>
           <View style={{ width: 30 }}/>

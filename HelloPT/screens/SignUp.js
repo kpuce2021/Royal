@@ -32,10 +32,10 @@ function SignUp(props) {
     
     return(
         <View style={styles.container}>
-          <Header title="test" />
-            <View style={{ width: '100%', backgroundColor: "#a19f9f", flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+            {/* <View style={{ width: '100%', backgroundColor: "#a19f9f", flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                 <Text style={styles.textBlue}>회원가입</Text>
-            </View>
+            </View> */}
+            <Header mode="stack" title="회원가입" />
 
             <View style={{ paddingHorizontal: 20, marginTop: 20 }}>
               

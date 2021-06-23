@@ -1,16 +1,29 @@
-import React, { useState } from 'react'
-import { Switch, TouchableWithoutFeedback, PermissionsAndroid } from 'react-native'
+import React, { useCallback, useState } from 'react'
+import { Switch, TouchableWithoutFeedback, PermissionsAndroid, Alert } from 'react-native'
 import Header from '../../components/Header/Header'
+import YoutubePlayer from 'react-native-youtube-iframe'
 
 function DetectDetail(props) {
   const [isChallenge, setIsChallenge] = useState(false);
   const [isRecord, setIsRecord] = useState(false);
+  const [playing, setPlaying] = useState(false);
   const toggleChallenge = () => {
     setIsChallenge(!isChallenge)
   }
   const toggleRecord = () => {
     setIsRecord(!isRecord)
   }
+
+  const onStateChange = useCallback((state) => {
+    if(state === "ended"){
+      setPlaying(false);
+      Alert.alert("Video has finished playing");
+    }
+  }, []);
+
+  const togglePlaying = useCallback(() => {
+    setPlaying((prev) => !prev);
+  },[])
 
   const checkPermissions = async () => {    
     await PermissionsAndroid.requestMultiple([
@@ -48,23 +61,31 @@ function DetectDetail(props) {
     console.log(props),
     <View style={{ flex: 1, backgroundColor: '#ffffff',}}>
       <Header navigation={props.navigation} mode='stack' title={props.route.params.title}/>
-      <View style={{ padding: 10 }}>
+      <ScrollView style={{ padding: 10 }}>
         <View>
           <Text style={{ textAlign: 'center', fontSize: 50, fontWeight: 'bold'}}>
             {props.route.params.title}
           </Text>
         </View>
 
-        <View style={{ borderWidth: 1, borderColor: '#000000', height: 150}}>
+        {/* <View style={{ borderWidth: 1, borderColor: '#000000', height: 150}}>
           <Text>동영상</Text>
+        </View> */}
+        <View>
+          <YoutubePlayer
+            height={250}
+            play={playing}
+            videoId={props.route.params.video}
+            onChangeState={onStateChange}
+          />
         </View>
 
         <View style={{ marginTop: 20 }}>
           <View style={{ justifyContent: 'center' }}>
-            <Text style={{ fontSize: 15}}>푸시업 갯수 조정 (최대 1000개)</Text>
+            <Text style={{ fontSize: 15}}>{props.route.params.title} 갯수 조정 (최대 1000개)</Text>
             <TextInput 
               style={{ borderWidth: 1, borderColor: '#000000', borderRadius: 10, padding: 5}}
-              placeholder='푸시업 갯수'/>
+              placeholder={props.route.params.title}/>
           </View>
           
           <View style={{ marginTop: 20 }}>
@@ -93,11 +114,11 @@ function DetectDetail(props) {
         </View>
         
         <TouchableWithoutFeedback onPress={requestCameraPermission}>
-          <View style={{ marginTop: 20, backgroundColor: '#9e1111', borderRadius: 5, height: 50 , justifyContent: 'center', alignItems: 'center'}}> 
+          <View style={{ marginTop: 20, marginBottom: 30, backgroundColor: '#9e1111', borderRadius: 5, height: 50 , justifyContent: 'center', alignItems: 'center'}}> 
             <Text style={{ color: '#ffffff'}}>측정하기</Text>
           </View>
         </TouchableWithoutFeedback>
-      </View>
+      </ScrollView>
     </View>
   )
 }

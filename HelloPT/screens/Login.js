@@ -1,7 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 import { StyleSheet } from "react-native";
 import Image from '../Images/imgExercise3.jpg'
 import Input from '../components/Input/Input'
+import axios from 'axios'
 
 const styles = StyleSheet.create({
   container: {
@@ -42,9 +43,25 @@ const styles = StyleSheet.create({
   }
 });
 
-function Login({ navigation, onLogin }){
+function Login({ navigation }){
+  const [inputs, setInputs] = useState({
+    userId: '',
+    password: ''
+  })
+  const onChange = (e, name) => {
+    // console.log(e.nativeEvent)
+    // const { value, name } = e.target
+    setInputs({
+      ...inputs,
+      [name] : e.nativeEvent.text
+    })
+  }
+
+  const onClick = () => {
+    
+  }
   return (
-  console.log('test',onLogin),
+  console.log(inputs),
   <View style={styles.container}>
     <ImageBackground source={Image} style={styles.image}>
       <View style={{ width: '100%', backgroundColor: "#000000a0", flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
@@ -56,12 +73,18 @@ function Login({ navigation, onLogin }){
         
         <TextInput 
           placeholder='아이디 입력'
+          onChange={text => onChange(text, "userId")}
+          name="userId"
+          value={inputs.userId}
           style={styles.textStyles}>
         </TextInput>
         
         <TextInput 
           placeholder='비밀번호 입력'
           secureTextEntry={true}
+          onChange={text => onChange(text, "password")}
+          name="password"
+          value={inputs.password}
           style={styles.black, styles.textStyles}>
         </TextInput>
 
