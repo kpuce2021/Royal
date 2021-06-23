@@ -12,8 +12,9 @@ const styles=StyleSheet.create({
       height: 100,
       justifyContent: 'space-around',
       borderRadius: 37.5,
-      marginLeft: 10,
-      marginRight: 10
+      marginLeft: 25,
+      marginRight: 10,
+      marginTop: 30
     }
 })
 
@@ -28,7 +29,7 @@ function Profile({ navigation }){
         </View>
 
 
-        <View style={{ flexDirection:'row'}}>
+        <View style={{ flexDirection:'row', height: 165}}>
           <View>
             <Image style={styles.imageDetail}
               source={{
@@ -60,8 +61,8 @@ function Profile({ navigation }){
                 </View> */}
 
                 <View style={{marginLeft: 10, marginTop: 10}}>
-                  <Text style={{fontSize: 25}}>홍길동</Text>
-                  <Text>Royal#51534</Text>
+                  <Text style={{fontSize: 25, marginTop: 25}}>홍길동</Text>
+                  <Text style={{marginTop: 5}}>Royal#51534</Text>
                 </View>
 
               </View>
@@ -69,7 +70,7 @@ function Profile({ navigation }){
               <View style={{flexDirection:'row'}}>
                 <TouchableOpacity
                   onPress={() => navigation.navigate('EditProfile')}>
-                  <Text style={{backgroundColor: '#dee0dc', fontSize:18, width: 215, fontWeight: 'bold', marginLeft: 20, marginTop:5, textAlign: 'center'}}>
+                  <Text style={{backgroundColor: '#dee0dc', fontSize:18, width: 215, fontWeight: 'bold', marginLeft: 20, marginTop:20, textAlign: 'center'}}>
                     프로필 편집</Text>
                 </TouchableOpacity>
               </View>
@@ -78,46 +79,46 @@ function Profile({ navigation }){
         </View>
       </View>
 
-      <View style={{marginTop: 10, backgroundColor: '#e0ffff', height: 450}}>
+      <View style={{marginTop: 10, height: 450}}>
 
         <View>
           <View style={{justifyContent: 'space-between', flexDirection:'row', marginLeft: 10, marginRight: 10}}>
-            <Text style={{fontSize: 18}}>챌린지 내역</Text>
-            <Text style={{}}>더보기</Text>
+            <Text style={{fontSize: 18, marginTop: 20, marginLeft: 10}}>챌린지 내역</Text>
+            <Text style={{marginTop: 20}}>더보기</Text>
           </View>
 
           <View>
-            <Text style={{marginLeft: 20}}> ● 챌린지 </Text>
-            <Text style={{marginLeft: 20}}> ● 챌린지 </Text>
-            <Text style={{marginLeft: 20}}> ● 챌린지 </Text>
+            <Text style={{marginLeft: 40, fontSize: 15, marginTop: 5}}> ● 챌린지 </Text>
+            <Text style={{marginLeft: 40, fontSize: 15, marginTop: 5}}> ● 챌린지 </Text>
+            <Text style={{marginLeft: 40, fontSize: 15, marginTop: 5}}> ● 챌린지 </Text>
           </View>
           
         </View>
 
         <View>
             <View style={{justifyContent: 'space-between', flexDirection:'row', marginLeft: 10, marginRight: 10}}>
-              <Text style={{fontSize: 18}}>챌린지 내역</Text>
-              <Text style={{}}>더보기</Text>
+              <Text style={{fontSize: 18, marginTop: 20, marginLeft: 10}}>운동기록</Text>
+              <Text style={{marginTop: 20}}>더보기</Text>
             </View>
 
             <View>
-              <Text style={{marginLeft: 20}}> ● 챌린지 </Text>
-              <Text style={{marginLeft: 20}}> ● 챌린지 </Text>
-              <Text style={{marginLeft: 20}}> ● 챌린지 </Text>
+              <Text style={{marginLeft: 40, fontSize: 15, marginTop: 5}}> ● 운동기록 </Text>
+              <Text style={{marginLeft: 40, fontSize: 15, marginTop: 5}}> ● 운동기록 </Text>
+              <Text style={{marginLeft: 40, fontSize: 15, marginTop: 5}}> ● 운동기록 </Text>
             </View>
             
           </View>
 
           <View>
             <View style={{justifyContent: 'space-between', flexDirection:'row', marginLeft: 10, marginRight: 10}}>
-              <Text style={{fontSize: 18}}>챌린지 내역</Text>
-              <Text style={{}}>더보기</Text>
+              <Text style={{fontSize: 18, marginTop: 20, marginLeft: 10}}>타임어택 내역</Text>
+              <Text style={{marginTop: 20}}>더보기</Text>
             </View>
 
             <View>
-              <Text style={{marginLeft: 20}}> ● 챌린지 </Text>
-              <Text style={{marginLeft: 20}}> ● 챌린지 </Text>
-              <Text style={{marginLeft: 20}}> ● 챌린지 </Text>
+              <Text style={{marginLeft: 40, fontSize: 15, marginTop: 5}}> ● 타임어택 </Text>
+              <Text style={{marginLeft: 40, fontSize: 15, marginTop: 5}}> ● 타임어택 </Text>
+              <Text style={{marginLeft: 40, fontSize: 15, marginTop: 5}}> ● 타임어택 </Text>
             </View>
             
           </View>
