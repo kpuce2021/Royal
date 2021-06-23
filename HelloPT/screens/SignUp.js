@@ -4,6 +4,7 @@ import Image from '../Images/imgExercise3.jpg'
 import Input from '../components/Input/Input'
 import Button from '../components/Button/Button';
 import Spacer from "../components/Spacer/Spacer";
+import Header from "../components/Header/Header";
 
 
 const styles=StyleSheet.create({
@@ -31,6 +32,7 @@ function SignUp(props) {
     
     return(
         <View style={styles.container}>
+          <Header title="test" />
             <View style={{ width: '100%', backgroundColor: "#a19f9f", flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                 <Text style={styles.textBlue}>회원가입</Text>
             </View>
@@ -42,8 +44,8 @@ function SignUp(props) {
                   placeholder='아이디 입력'
                   style={{backgroundColor: '#ffffff', borderRadius: 10, width: '80%'}}>
                 </TextInput>
-                <Spacer left={15} />
-                <Button text="중복확인" padding={13}/>
+                <Spacer left={13} />
+                <Button text="중복확인" padding={12}/>
               </View>
 
               <Spacer top={20} />

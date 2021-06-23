@@ -16,6 +16,7 @@ import Splash from './screens/Splash.js'
 import Home from './screens/Home.js'
 import Detect from './screens/Detect/Detect'
 import DetectDetail from './screens/Detect/DetectDetail'
+import Profile from './screens/Profile'
 
 
 // function SignUp(){
@@ -41,13 +42,15 @@ function Post() {
   )
 }
 
-function Profile() {
+function ProfileStack() {
+  const Stack = createStackNavigator();
   return(
-    <View>
-      <Text>프로필</Text>
-    </View>
+    <Stack.Navigator headerMode='none'>
+      <Stack.Screen name="Profile" component={Profile} />
+    </Stack.Navigator>
   )
 }
+
 function HomeStack() {
   const Stack = createStackNavigator();
   return (
@@ -91,7 +94,7 @@ function BottomTab() {
       <Tab.Screen name="Detect" component={DetectStack} options={{ title: '측정'}}/>
       <Tab.Screen name="Calendar" component={calendar} options={{ title: '캘린더'}}/>
       <Tab.Screen name="Posts" component={Post} options={{ title: '게시판'}}/>
-      <Tab.Screen name="Profile" component={Profile} options={{ title: '프로필'}}/>
+      <Tab.Screen name="Profile" component={ProfileStack} options={{ title: '프로필'}}/>
     </Tab.Navigator>
   )
 }
