@@ -17,6 +17,7 @@ import Home from './screens/Home.js'
 import Detect from './screens/Detect/Detect'
 import DetectDetail from './screens/Detect/DetectDetail'
 import Profile from './screens/Profile'
+import EditProfile from './screens/EditProfile.js';
 
 
 // function SignUp(){
@@ -46,7 +47,8 @@ function ProfileStack() {
   const Stack = createStackNavigator();
   return(
     <Stack.Navigator headerMode='none'>
-      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Profile" component={Profile}/>
+      <Stack.Screen name="EditProfile" component={EditProfile}/>
     </Stack.Navigator>
   )
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, TouchableOpacity } from "react-native";
 import Header from "../components/Header/Header";
 
 const styles=StyleSheet.create({
@@ -17,7 +17,7 @@ const styles=StyleSheet.create({
     }
 })
 
-function Profile(){
+function Profile({ navigation }){
   return(
 
     <View>
@@ -67,9 +67,11 @@ function Profile(){
               </View>
 
               <View style={{flexDirection:'row'}}>
-                <Text style={{backgroundColor: '#dee0dc', fontSize:18, width: 215, fontWeight: 'bold', marginLeft: 20, marginTop:5, textAlign: 'center'}}>
-                  Edit Profile
-                </Text>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('EditProfile')}>
+                  <Text style={{backgroundColor: '#dee0dc', fontSize:18, width: 215, fontWeight: 'bold', marginLeft: 20, marginTop:5, textAlign: 'center'}}>
+                    프로필 편집</Text>
+                </TouchableOpacity>
               </View>
             </View>
 
