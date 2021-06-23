@@ -12,6 +12,13 @@ function DetectDetail(props) {
     setIsRecord(!isRecord)
   }
 
+  const checkPermissions = async () => {    
+    await PermissionsAndroid.requestMultiple([
+     PermissionsAndroid.PERMISSIONS.CAMERA,
+    ]).then(result => {
+     console.log('checkPermissions result', result);        
+    });
+   }
   const requestCameraPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
@@ -28,7 +35,7 @@ function DetectDetail(props) {
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         console.log("You can use the camera");
-        navigation.navigate('Splash')
+        props.navigation.navigate('Splash')
       } else {
         console.log("Camera permission denied");
       }
@@ -85,7 +92,7 @@ function DetectDetail(props) {
           </View>
         </View>
         
-        <TouchableWithoutFeedback onPress={()=> props.navigation.navigate('Splash')}>
+        <TouchableWithoutFeedback onPress={requestCameraPermission}>
           <View style={{ marginTop: 20, backgroundColor: '#9e1111', borderRadius: 5, height: 50 , justifyContent: 'center', alignItems: 'center'}}> 
             <Text style={{ color: '#ffffff'}}>측정하기</Text>
           </View>

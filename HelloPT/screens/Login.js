@@ -42,8 +42,9 @@ const styles = StyleSheet.create({
   }
 });
 
-function Login(props){
+function Login({ navigation, onLogin }){
   return (
+  console.log('test',onLogin),
   <View style={styles.container}>
     <ImageBackground source={Image} style={styles.image}>
       <View style={{ width: '100%', backgroundColor: "#000000a0", flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
@@ -73,13 +74,15 @@ function Login(props){
             justifyContent: 'center', 
             alignItems: 'center', 
             borderRadius: 10,
-            marginTop: 10}}>
+            marginTop: 10}}
+          onPress={() => navigation.navigate('Home')}
+            >
           <Text style={{ color: 'white', fontSize: 20}}>로그인</Text>
         </TouchableOpacity>
 
         <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
           <Text style={{fontSize: 15, color: '#ffffff'}}>아이디&비밀번호 찾기</Text>
-          <Text onPress={() => props.navigation.navigate('SignUp', { userId: 'user', password: '1234' })} style={{fontSize: 15, color: '#ffffff'}}>회원가입 하기</Text>
+          <Text onPress={() => navigation.navigate('SignUp', { userId: 'user', password: '1234' })} style={{fontSize: 15, color: '#ffffff'}}>회원가입 하기</Text>
         </View>
 
       </View>
