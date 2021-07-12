@@ -18,6 +18,8 @@ import Detect from './screens/Detect/Detect'
 import DetectDetail from './screens/Detect/DetectDetail'
 import Profile from './screens/Profile'
 import EditProfile from './screens/EditProfile.js';
+import Post from './screens/Post/Post'
+import postDetail from './screens/Post/PostDetail'
 
 
 // function SignUp(){
@@ -36,11 +38,21 @@ function calendar() {
   )
 }
 
-function Post() {
+// function Post() {
+//   return(
+//     <View>
+//       <Text>포스트</Text>
+//     </View>
+//   )
+// }
+
+function PostStack() {
+  const stack = createStackNavigator();
   return(
-    <View>
-      <Text>포스트</Text>
-    </View>
+    <Stack.Navigator headerMode='none'>
+      <Stack.Screen name='Post' component={Post} />
+      <Stack.Screen name="postDetail" component={postDetail} />
+    </Stack.Navigator>
   )
 }
 
@@ -108,7 +120,7 @@ function BottomTab() {
           tabBarIcon: ({ focused, color, size }) => {
             return focused ? <Icon name="calendar" size={25} color="#2e64b0"/> : <Icon name="calendar-outline" size={25} />
         }}}/>
-      <Tab.Screen name="Posts" component={Post} 
+      <Tab.Screen name="Post" component={PostStack} 
         options={{ title: '게시판',
           tabBarIcon: ({ focused, color, size }) => {
             return focused ? <Icon name="clipboard" size={25} color="#2e64b0" /> : <Icon name="clipboard-outline" size={25} />
