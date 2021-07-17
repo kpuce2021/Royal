@@ -36,6 +36,7 @@ function EditProfile() {
         <Text style={{fontSize: 17, textAlign: 'center'}}>홍길동</Text>
         <Text style={{marginLeft: 20, marginTop: 20, fontSize: 18}}>닉네임</Text>
         <TextInput 
+          placeholderTextColor="gray"
           placeholder="닉네임을 입력해주세요"
           style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 18, backgroundColor: '#ffffff', width: 328}} />
         <Text style={{marginLeft: 20, marginTop: 10, fontSize: 18, }}>선호 운동 종류</Text>

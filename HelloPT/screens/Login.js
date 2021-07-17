@@ -73,6 +73,7 @@ function Login({ navigation }){
         
         <TextInput 
           placeholder='아이디 입력'
+          placeholderTextColor="gray"
           onChange={text => onChange(text, "userId")}
           name="userId"
           value={inputs.userId}
@@ -82,6 +83,7 @@ function Login({ navigation }){
         <TextInput 
           placeholder='비밀번호 입력'
           secureTextEntry={true}
+          placeholderTextColor="gray"
           onChange={text => onChange(text, "password")}
           name="password"
           value={inputs.password}

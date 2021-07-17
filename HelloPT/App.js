@@ -18,8 +18,8 @@ import Detect from './screens/Detect/Detect'
 import DetectDetail from './screens/Detect/DetectDetail'
 import Profile from './screens/Profile'
 import EditProfile from './screens/EditProfile.js';
+import Posts from './screens/Post/Posts'
 import Post from './screens/Post/Post'
-import postDetail from './screens/Post/PostDetail'
 
 
 // function SignUp(){
@@ -47,11 +47,11 @@ function calendar() {
 // }
 
 function PostStack() {
-  const stack = createStackNavigator();
+  const Stack = createStackNavigator();
   return(
     <Stack.Navigator headerMode='none'>
-      <Stack.Screen name='Post' component={Post} />
-      <Stack.Screen name="postDetail" component={postDetail} />
+      <Stack.Screen name='Posts' component={Posts} />
+      <Stack.Screen name="Post" component={Post} />
     </Stack.Navigator>
   )
 }
@@ -120,12 +120,13 @@ function BottomTab() {
           tabBarIcon: ({ focused, color, size }) => {
             return focused ? <Icon name="calendar" size={25} color="#2e64b0"/> : <Icon name="calendar-outline" size={25} />
         }}}/>
-      <Tab.Screen name="Post" component={PostStack} 
+      <Tab.Screen name="Post" component={PostStack}
+        initialRouteName={Posts}
         options={{ title: '게시판',
           tabBarIcon: ({ focused, color, size }) => {
             return focused ? <Icon name="clipboard" size={25} color="#2e64b0" /> : <Icon name="clipboard-outline" size={25} />
         }}}/>
-      <Tab.Screen name="Profile" component={Profile} 
+      <Tab.Screen name="Profile" component={ProfileStack} 
         options={{ title: '프로필',
           tabBarIcon: ({ focused, color, size }) => {
             return focused ? <Icon name="person-circle-sharp" size={25} color="#2e64b0" /> : <Icon name="person-circle-outline" size={25} />

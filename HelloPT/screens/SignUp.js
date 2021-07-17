@@ -35,13 +35,14 @@ function SignUp(props) {
             {/* <View style={{ width: '100%', backgroundColor: "#a19f9f", flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
                 <Text style={styles.textBlue}>회원가입</Text>
             </View> */}
-            <Header mode="stack" title="회원가입" />
+            <Header navigation={props.navigation} mode="stack" title="회원가입" />
 
             <View style={{ paddingHorizontal: 20, marginTop: 20 }}>
               
               <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10, justifyContent: 'center' }}>
                 <TextInput
                   placeholder='아이디 입력'
+                  placeholderTextColor="gray"
                   style={{backgroundColor: '#ffffff', borderRadius: 10, width: '80%'}}>
                 </TextInput>
                 <Spacer left={13} />
@@ -53,6 +54,7 @@ function SignUp(props) {
               <TextInput 
                 placeholder='비밀번호 입력'
                 secureTextEntry={true}
+                placeholderTextColor="gray"
                 style={styles.textStyles}>
               </TextInput>
 
@@ -61,6 +63,7 @@ function SignUp(props) {
               <TextInput 
                 placeholder='비밀번호 다시 입력'
                 secureTextEntry={true}
+                placeholderTextColor="gray"
                 style={styles.textStyles}>
               </TextInput>
 
@@ -68,6 +71,7 @@ function SignUp(props) {
 
               <TextInput 
                 placeholder='이름 입력'
+                placeholderTextColor="gray"
                 secureTextEntry={true}
                 style={styles.textStyles}>
               </TextInput>
@@ -77,6 +81,7 @@ function SignUp(props) {
               <TextInput 
                 placeholder='이메일 입력'
                 secureTextEntry={true}
+                placeholderTextColor="gray"
                 style={styles.textStyles}>
               </TextInput>
 
