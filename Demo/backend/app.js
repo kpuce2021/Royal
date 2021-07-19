@@ -1,7 +1,7 @@
 const express = require('express')
 const axios = require("axios");
-var db_config = require(__dirname + '/config/database.js');
-var conn = db_config.init();
+const db_config = require(__dirname + '/config/database.js');
+const conn = db_config.init();
 const app = express()
 const port = 8080
 const cors = require('cors');
@@ -11,22 +11,23 @@ const tf = require("@tensorflow/tfjs-node");
 //const tf = require("@tensorflow/tfjs");
 const {loadGraphModel} = require('@tensorflow/tfjs-converter');
 
-var challengeRouter = require('./routes/challenge');
-var exerciseRouter = require('./routes/exercise');
-var homeRouter = require('./routes/home');
-var loginRouter = require('./routes/login');
-var mypageRouter = require('./routes/mypage');
+const challengeRouter = require('./routes/challenge');
+const exerciseRouter = require('./routes/exercise');
+const homeRouter = require('./routes/home');
+const loginRouter = require('./routes/login');
+const mypageRouter = require('./routes/mypage');
 
 app.use(cors());
-//app.use(bodyParser().json());
+app.use(bodyParser.json());
 app.use(express.json())
 db_config.connect(conn);
+
 
 //app.use('/challenge',challengeRouter);
 // app.use('/exercise',exerciseRouter);
 // app.use('/home',homeRouter);
-// app.use('/login',loginRouter);
-// app.use('/mypage',mypageRouter);
+app.use('/login',loginRouter);
+app.use('/mypage',mypageRouter);
 
 app.get('/', (req, res) => {
   console.log('get 요청',req.body);
@@ -38,36 +39,37 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   console.log('post 요청',req.body);
+  //res.send('send ok');
 
-  let test = [[]]
-  for(i=1;i<7;i++){
-    test[0].push(req.body.pose[i].position.x)
-    test[0].push(req.body.pose[i].position.y)
-  }
-  for(i=11; i<17; i++){
-    test[0].push(req.body.pose[i].position.x)
-    test[0].push(req.body.pose[i].position.y)
-  }
-  const arrString = test.join()
-  console.log('test',test)
-  console.log('array',arrString)
+  // let test = [[]]
+  // for(i=1;i<7;i++){
+  //   test[0].push(req.body.pose[i].position.x)
+  //   test[0].push(req.body.pose[i].position.y)
+  // }
+  // for(i=11; i<17; i++){
+  //   test[0].push(req.body.pose[i].position.x)
+  //   test[0].push(req.body.pose[i].position.y)
+  // }
+  // const arrString = test.join()
+  // console.log('test',test)
+  // console.log('array',arrString)
 
-  const pose = async function loadModel(Temp) {
-    const model = await loadGraphModel(
-      "file://./web_model/model.json"
-    );
+  // const pose = async function loadModel(Temp) {
+  //   const model = await loadGraphModel(
+  //     "file://./web_model/model.json"
+  //   );
     
-    const Input = tf.tensor(Temp);
-    const Output = model.predict(Input).dataSync()[0];
-    //const Output = model.executeAsync(Temp);
-    console.log('##output : ',Output);
-    return Output.toFixed(2)*100;
-  }
+  //   const Input = tf.tensor(Temp);
+  //   const Output = model.predict(Input).dataSync()[0];
+  //   //const Output = model.executeAsync(Temp);
+  //   console.log('##output : ',Output);
+  //   return Output.toFixed(2)*100;
+  // }
 
-  pose(test).then(v => {
-    console.log('loadModel : ',v); 
-    res.send(v.toString());
-  });
+  // pose(test).then(v => {
+  //   console.log('loadModel : ',v); 
+  //   res.send(v.toString());
+  // });
   //const pose = loadModel(test)
   // console.log('loadModel : ', pose)
   // res.send(pose.toString());

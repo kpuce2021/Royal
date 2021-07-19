@@ -1,5 +1,17 @@
 const express = require('express');
 const router = express.Router();
+const app = express()
+const cors = require('cors');
+const bodyParser = require('body-parser')
+
+const db_config = require('../config/database.js');
+const conn = db_config.init();
+db_config.connect(conn);
+
+
+app.use(bodyParser.json());
+app.use(cors());
+app.use(express.json())
 
 //=================================
 //             Home
@@ -19,36 +31,46 @@ const router = express.Router();
 // });
 
 // home 화면
-router.post("/home", (req, res) => {
-    var sql = 'SELECT * FROM from users LEFT OUTER JOIN challenge on users.user_no = challenge.user_no WHERE users.user_id=? OR challenge.rank <= 3';
-    var user_id = req.body.user_id;
+router.post("/", (req, res) => {
+    var sql = 'SELECT * FROM boards, challenge WHERE challenge.ch_rank = ( SELECT ch_rank FROM challenge ORDER BY challenge.ch_rank LIMIT 3) AND boards.board_like = ( SELECT board_like FROM boards ORDER BY boards.board_like DESC LIMIT 3);';
+    //var user_id = req.body.user_id;
 
-    conn.query(sql, [user_id], function(err, result, field){
+    conn.query(sql, function(err, result, field){
         if(err){
           console.log(err);
           res.status(500).send('Internal Server  Error');
         }
         //console.log(result[i].user_id + " : " + result[i].user_password);
-        console.log(result[i].user_id);
+        //console.log(result[i].user_id);
       res.send(result);
       });
 });
 
 // challenge ranking
-router.post("/challenge/rank", (req, res) => {
-    var user_no = req.body.user_no;
-    var ex_no = req.body.ex_no;
-    var sql = 'SELECT * FROM challenge WHERE user_no=?, ex_no=?';
-    conn.query(sql, [user_no, ex_no], function(err, result, field){
-        if(err){
-          console.log(err);
-          res.status(500).send('Internal Server  Error');
-        }
-        //console.log(result[i].user_id + " : " + result[i].user_password);
-        console.log(result[i].user_no + " : " + result[i].ex_no);
-        res.send(result);
-      });
-  });
+router.post("/challenge_rank/more", (req, res) => {
+  var sql = 'SELECT * FROM challenge ORDER BY ch_rank';
+  conn.query(sql, function(err, result, field){
+      if(err){
+        console.log(err);
+        res.status(500).send('Internal Server  Error');
+      }
+      //console.log(result[i].user_id + " : " + result[i].user_password);
+      //console.log(result[i].user_no + " : " + result[i].ex_no);
+      res.send(result);
+    });
+});
+
+// boards ranking
+router.post("/boards_rank/more", (req, res) => {
+  var sql = 'SELECT * FROM boards ORDER BY board_like';
+  conn.query(sql, function(err, result, field){
+      if(err){
+        console.log(err);
+        res.status(500).send('Internal Server  Error');
+      }
+      res.send(result);
+    });
+});
 
 /*
 app.get('/users', (req, res) => {

@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json())
 
 //=================================
-//          My_page
+//          Boards
 //=================================
 
 // router.get("/auth", auth, (req, res) => {
@@ -29,13 +29,11 @@ app.use(express.json())
 //     });
 // });
 
-//my page 화면
+//boards 화면
 router.post("/", (req, res) => {
-  //var sql = 'SELECT * FROM users LEFT OUTER JOIN challenge on users.user_no = challenge.user_no LEFT OUTER JOIN timeattack on users.user_no = timeattack.user_no LEFT OUTER JOIN exercise_count on users.user_no = exercise_count.user_no WHERE users.user_id=?'
-  var sql = 'SELECT * FROM users LEFT OUTER JOIN challenge on users.user_no = challenge.user_no LEFT OUTER JOIN timeattack on users.user_no = timeattack.user_no WHERE users.user_id=? AND ch_rank = (select min(ch_rank) from challenge limit 3) AND ta_count = (select min(ta_count) from timeattack limit 3)'
-  var user_id = req.body.user_id;
+  var sql = 'SELECT * FROM boards ORDER BY no DESC';
 
-  conn.query(sql, [user_id], function(err, result, field){
+  conn.query(sql, function(err, result, field){
       if(err){
         console.log(err);
         res.status(500).send('Internal Server  Error');
@@ -45,32 +43,57 @@ router.post("/", (req, res) => {
     });
 });
 
+//boards 읽기
+router.post("/read", (req, res) => {
+    const board_no = req.body.board_no;
+    var sql = 'SELECT * FROM boards WHERE no = ?';
+  
+    conn.query(sql, [board_no], function(err, result, field){
+        if(err){
+          console.log(err);
+          res.status(500).send('Internal Server  Error');
+        }
+        //res.redirect('/topic/'+ result.insertId);
+        res.send(result);
+      });
+  });
 
-//profile 수정 화면
-router.post("/profile", (req, res) => {
-  var user_id = req.body.user_id;
-  var sql = 'SELECT * FROM users WHERE user_id=?';
-  conn.query(sql, [user_id], function(err, result, field){
+//board 작성
+router.post("/write", (req, res) => {
+  const boardObj = {
+    board_no : req.body.board_no,
+    user_no : req.body.user_no,
+    board_title : req.body.board_title,
+    board_description : req.body.board_description,
+    board_contents : req.body.board_contents,
+    board_date : req.body.board_date,
+    board_update : req.body.board_update,
+    board_like : 0,
+  }
+
+  var sql = 'INSERT INTO boards SET ?';
+  conn.query(sql, function(err, result, field){
       if(err){
         console.log(err);
         res.status(500).send('Internal Server  Error');
       }
-      //console.log(result[i].user_id + " : " + result[i].user_password);
       res.send(result);
     });
 });
 
-//profile 수정 요청
-router.post("/updateProfile", (req, res) => {
-  const userObj = {
-    user_name : req.body.user_name,
-    pro_url : req.body.pro_url,
+//board 수정 요청
+router.post("/update", (req, res) => {
+  const boardObj = {
+    board_title : req.body.board_title,
+    board_contents : req.body.board_contents,
+    board_update : req.body.board_update,
   }
-  const user_id = req.body.user_id;
+  const board_no = req.body.board_no;
+  const user_no = req.body.user_no;
 
-  var sql = 'UPDATE users SET ? WHERE user_id = ?';
+  var sql = 'UPDATE board SET ? WHERE no = ? AND user_no = ?';
 
-  conn.query(sql, [userObj, user_id], function(err, result, field){
+  conn.query(sql, [boardObj, board_no, user_no], function(err, result, field){
       if(err){
         console.log(err);
         res.status(500).send('Internal Server  Error');
