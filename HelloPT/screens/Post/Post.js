@@ -32,7 +32,6 @@ export default Post
 
 function PostList({post}) {
   return(
-    console.log('test', post),
     <View style={{ padding: 15, borderBottomWidth: 1, borderBottomColor: 'gray'}}>
       
       <View>

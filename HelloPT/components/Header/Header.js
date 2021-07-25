@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/AntDesign'
 Icon.loadFont()
 
 function Header({ navigation, mode, title}) {
-  console.log('header',navigation);
   if(mode === 'stack'){
     return (
       <View style={{

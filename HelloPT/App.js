@@ -20,31 +20,17 @@ import Profile from './screens/Profile'
 import EditProfile from './screens/EditProfile.js';
 import Posts from './screens/Post/Posts'
 import Post from './screens/Post/Post'
+import CalendarView from './screens/Calendars/CalendarView'
 
 
-// function SignUp(){
-//   return(
-//     <View>
-//       <Text>회원가입</Text>
-//     </View>
-//   )
-// }
-function calendar() {
+function CalendarStack() {
+  const Stack = createStackNavigator();
   return(
-    <View>
-      <Header mode="plain" title="회원가입"/>
-      <Text>캘린더</Text>
-    </View>
+    <Stack.Navigator headerMode='none'>
+      <Stack.Screen name='Calendar' component={CalendarView} />
+    </Stack.Navigator>
   )
 }
-
-// function Post() {
-//   return(
-//     <View>
-//       <Text>포스트</Text>
-//     </View>
-//   )
-// }
 
 function PostStack() {
   const Stack = createStackNavigator();
@@ -93,14 +79,7 @@ function DetectStack() {
     </Stack.Navigator>
   )
 }
-// function ProfileStack() {
-//   const Stack = createStackNavigator();
-//   return (
-//     <Stack.Navigator>
-//       <Stack.Screen name=""
-//     </Stack.Navigator>
-//   )
-// }
+
 function BottomTab() {
   const Tab = createBottomTabNavigator();
   return(
@@ -115,7 +94,7 @@ function BottomTab() {
           tabBarIcon: ({ focused, color, size }) => {
             return focused ? <Icon name="body" size={25} color="#2e64b0"/> : <Icon name="body-outline" size={25} />
         }}}/>
-      <Tab.Screen name="Calendar" component={calendar} 
+      <Tab.Screen name="Calendar" component={CalendarStack} 
         options={{ title: '캘린더',
           tabBarIcon: ({ focused, color, size }) => {
             return focused ? <Icon name="calendar" size={25} color="#2e64b0"/> : <Icon name="calendar-outline" size={25} />
