@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { Switch, TouchableWithoutFeedback, PermissionsAndroid, FlatList } from 'react-native'
 import Header from '../../components/Header/Header'
+import { styles } from 'ansi-colors'
+import FAB from 'react-native-fab'
+import ActionButton from 'react-native-action-button'
+import Icon from 'react-native-vector-icons/Ionicons'
 
 function Post(props) {
   posts = [
@@ -24,6 +28,20 @@ function Post(props) {
         renderItem={(post)=> <PostList post={post} />}
         keyExtractor={(item) => item.id}
       />
+      {/* <FAB 
+      buttonColor="#0099ff" iconTextColor="#FFFFFF"
+      visible={true}
+      /> */}
+
+      <ActionButton buttonColor="#c3e0e0">
+        <ActionButton.Item
+          buttonColor="#affaf9"
+          title="게시글 작성"
+          onPress={()=> navigation.navigate('CreatePost')}>
+          <Icon name="add" type="antdesign" />
+        </ActionButton.Item>
+      </ActionButton>
+
     </View>
   )
 }
