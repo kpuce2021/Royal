@@ -20,32 +20,46 @@ const timeToString = (time) => {
 function CalendarView(){
   const [items, setItems] = useState({});
 
+  useEffect(() => {
+    const newItems = {};
+    calendars.map(cal =>{
+      newItems[cal.cal_startDate] = [{ name: 'item', height: 50 }]
+    })
+    setItems(newItems)
+  },[])
+
   const loadItems = (day) => {
-    setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 1000;
-        const strTime = timeToString(time);
-        if (!items[strTime]) {
-          items[strTime] = [];
-          const numItems = Math.floor(Math.random() * 3 + 1);
-          for (let j = 0; j < numItems; j++) {
-            items[strTime].push({
-              name: 'Item for ' + strTime + ' #' + j,
-              height: Math.max(50, Math.floor(Math.random() * 150)),
-            });
-          }
-        }
-      }
-      const newItems = {};
-      Object.keys(items).forEach((key) => {
-        newItems[key] = items[key];
-      });
-      setItems(newItems);
-    }, 1000);
+    const newItems = {};
+    calendars.map(cal =>{
+      newItems[cal.cal_startDate] = [{ name: 'item' }]
+    })
+    setItems(newItems)
+    // setTimeout(() => {
+    //   for (let i = -15; i < 85; i++) {
+    //     const time = day.timestamp + i * 24 * 60 * 60 * 1000;
+    //     const strTime = timeToString(time);
+    //     if (!items[strTime]) {
+    //       items[strTime] = [];
+    //       const numItems = Math.floor(Math.random() * 3 + 1);
+    //       for (let j = 0; j < numItems; j++) {
+    //         items[strTime].push({
+    //           name: 'Item for ' + strTime + ' #' + j,
+    //           height: Math.max(50, Math.floor(Math.random() * 150)),
+    //         });
+    //       }
+    //     }
+    //   }
+    //   const newItems = {};
+    //   Object.keys(items).forEach((key) => {
+    //     newItems[key] = items[key];
+    //   });
+    //   console.log('test',newItems)
+    //   setItems(newItems);
+    // }, 100);
   };
 
   const renderItem = (item) => {
-    console.log(item)
+    console.log('render',item)
     return (
       <TouchableOpacity style={{marginRight: 10, marginTop: 17}}>
         <Text>{item.name}</Text>
@@ -53,12 +67,12 @@ function CalendarView(){
     );
   };
   const calendars = [
-    {id: 1, cal_title: '스쿼트', cal_description: '스쿼트 하는날', cal_startDate:'2020-07-01', cal_endDate: '2020-07-01', cal_tag: []},
-    {id: 2, cal_title: '스쿼트', cal_description: '스쿼트 하는날', cal_startDate:'2020-07-03', cal_endDate: '2020-07-03', cal_tag: []},
-    {id: 3, cal_title: '스쿼트', cal_description: '스쿼트 하는날', cal_startDate:'2020-07-05', cal_endDate: '2020-07-05', cal_tag: []},
-    {id: 4, cal_title: '스쿼트', cal_description: '스쿼트 하는날', cal_startDate:'2020-07-07', cal_endDate: '2020-07-07', cal_tag: []},
-    {id: 5, cal_title: '스쿼트', cal_description: '스쿼트 하는날', cal_startDate:'2020-07-09', cal_endDate: '2020-07-09', cal_tag: []},
-    {id: 6, cal_title: '스쿼트', cal_description: '스쿼트 하는날', cal_startDate:'2020-07-01', cal_endDate: '2020-07-01', cal_tag: []},
+    {id: 1, cal_title: '스쿼트', cal_description: '스쿼트 하는날', cal_startDate:'2021-08-01', cal_endDate: '2021-08-01', cal_tag: []},
+    {id: 2, cal_title: '스쿼트', cal_description: '스쿼트 하는날', cal_startDate:'2021-08-03', cal_endDate: '2021-08-03', cal_tag: []},
+    {id: 3, cal_title: '스쿼트', cal_description: '스쿼트 하는날', cal_startDate:'2021-08-05', cal_endDate: '2021-08-05', cal_tag: []},
+    {id: 4, cal_title: '스쿼트', cal_description: '스쿼트 하는날', cal_startDate:'2021-08-07', cal_endDate: '2021-08-07', cal_tag: []},
+    {id: 5, cal_title: '스쿼트', cal_description: '스쿼트 하는날', cal_startDate:'2021-08-09', cal_endDate: '2021-08-09', cal_tag: []},
+    {id: 6, cal_title: '스쿼트', cal_description: '스쿼트 하는날', cal_startDate:'2021-08-01', cal_endDate: '2021-08-01', cal_tag: []},
   ]
   const [ dateState, setDateState] = useState({
     selectedDate: '',
@@ -70,46 +84,60 @@ function CalendarView(){
     },
   })
 
-  // useEffect(()=>{
-  //   const markedDates = {};
-  //   calendars.map(cal => {
-  //     markedDates[cal.cal_startDate] = {marked: true, dotColor: 'red'} 
-  //     setDateState({
-  //       ...dateState.markedDates,
-  //       markedDates
-  //     })
-      
-  //   })
-  //   console.log(dateState.markedDates)
-  // },[])
+  useEffect(()=>{
+    const markedDates = {};
+    calendars.map(cal => {
+      markedDates[cal.cal_startDate] = {marked: true} 
+      setDateState({
+        markedDates
+      })
+    })
+  },[])
 
   const getSelectDay = date => {
-    const markedDates = {};
-    markedDates[date] = {selected: true }
-    setDateState({
-      ...dateState.markedDates,
-      markedDates: markedDates,
-      selectedDate: date
-    })
+    const markedDates = { ...dateState.markedDates };
+    // markedDates[date] = { selected: true }
+    console.log('selected',markedDates[date]?.selected)
+    if(markedDates[date]?.selected === 'undefined'){
+      markedDates[date] = { ...markedDates[date], selected: false }
+      setDateState({
+        // ...dateState.markedDates,
+        markedDates,
+        selectedDate: date,
+      })
+    }
+    else{
+      markedDates[date] = { ...markedDates[date], selected: true }
+      setDateState({
+        // ...dateState.markedDates,
+        markedDates,
+        selectedDate: date,
+      })
+    }
+    // setDateState({
+    //   ...dateState.markedDates,
+    //   markedDates,
+    //   selectedDate: date,
+    // })
   }
 
   return(
-    console.log('ttt', items),
+    console.log('ttt', dateState.markedDates),
     <View style={{ backgroundColor: '#ffffff', flex: 1, }}>
       <Header mode="plain" title="test" />
       <View style={{ flex: 1,}}>
-        {/* <Calendar 
+        <Calendar 
           markedDates={dateState.markedDates}
           onDayPress={(day)=> {
             getSelectDay(day.dateString)
           }}
-        /> */}
-        <Agenda
+        />
+        {/* <Agenda
           items={items}
           loadItemsForMonth={loadItems}
           selected={'2021-07-25'}
           renderItem={renderItem}
-        />
+        /> */}
       </View>
     </View>
   )
