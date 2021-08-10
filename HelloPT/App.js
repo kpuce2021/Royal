@@ -21,6 +21,7 @@ import EditProfile from './screens/EditProfile.js';
 import Posts from './screens/Post/Posts'
 import Post from './screens/Post/Post'
 import CalendarView from './screens/Calendars/CalendarView'
+import CreatePost from './screens/Post/CreatePost.js';
 
 
 function CalendarStack() {
@@ -38,6 +39,7 @@ function PostStack() {
     <Stack.Navigator headerMode='none'>
       <Stack.Screen name='Posts' component={Posts} />
       <Stack.Screen name="Post" component={Post} />
+      <Stack.Screen name="CreatePost" component={CreatePost} />
     </Stack.Navigator>
   )
 }
