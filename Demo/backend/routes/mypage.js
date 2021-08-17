@@ -16,18 +16,26 @@ app.use(express.json())
 //          My_page
 //=================================
 
-// router.get("/auth", auth, (req, res) => {
-//     res.status(200).json({
-//         _id: req.user._id,
-//         isAdmin: req.user.role === 0 ? false : true,
-//         isAuth: true,
-//         email: req.user.email,
-//         name: req.user.name,
-//         lastname: req.user.lastname,
-//         role: req.user.role,
-//         image: req.user.image,
-//     });
-// });
+//      앱 완성시 지워야됨
+// users
+// user_id : 회원 아이디
+// user_password : 회원 비밀번호
+// user_name : 회원 닉네임
+// user_joindate : 가입 날짜
+// user_update : 업데이트 날짜
+// user_type : 유저 타입(관리자, 일반 이용자)
+// pro_url : 프로필 url
+// pw_salt : 비밀번호 해쉬 솔트
+
+// boards
+// board_title : 게시글 제목
+// board_date : 게시글 작성 날짜
+// board_like : 게시글 좋아요
+
+// challenge
+// ch_no : 챌린지 번호
+// ch_rank : 챌린지 랭킹
+// ch_count : 챌린지 횟수
 
 //my page 화면
 router.post("/", (req, res) => {

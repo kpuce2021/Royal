@@ -17,18 +17,16 @@ app.use(express.json())
 //             Home
 //=================================
 
-// router.get("/auth", auth, (req, res) => {
-//     res.status(200).json({
-//         _id: req.user._id,
-//         isAdmin: req.user.role === 0 ? false : true,
-//         isAuth: true,
-//         email: req.user.email,
-//         name: req.user.name,
-//         lastname: req.user.lastname,
-//         role: req.user.role,
-//         image: req.user.image,
-//     });
-// });
+//      앱 완성시 지워야됨
+// boards
+// board_title : 게시글 제목
+// board_date : 게시글 작성 날짜
+// board_like : 게시글 좋아요
+
+// challenge
+// ch_no : 챌린지 번호
+// ch_rank : 챌린지 랭킹
+// ch_count : 챌린지 횟수
 
 // home 화면
 router.post("/", (req, res) => {
@@ -72,14 +70,6 @@ router.post("/boards_rank/more", (req, res) => {
     });
 });
 
-/*
-app.get('/users', (req, res) => {
-    connection.query('SELECT * from Users', (error, rows) => {
-      if (error) throw error;
-      console.log('User info is: ', rows);
-      res.send(rows);
-    });
-  });
-*/
+
 
 module.exports = router;

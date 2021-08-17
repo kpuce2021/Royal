@@ -23,18 +23,15 @@ app.use(express.json())
 //             Login
 //=================================
 
-// router.get("/auth", auth, (req, res) => {
-//     res.status(200).json({
-//         _id: req.user._id,
-//         isAdmin: req.user.role === 0 ? false : true,
-//         isAuth: true,
-//         email: req.user.email,
-//         name: req.user.name,
-//         lastname: req.user.lastname,
-//         role: req.user.role,
-//         image: req.user.image,
-//     });
-// });
+//      앱 완성시 지워야됨
+// user_id : 회원 아이디
+// user_password : 회원 비밀번호
+// user_name : 회원 닉네임
+// user_joindate : 가입 날짜
+// user_update : 업데이트 날짜
+// user_type : 유저 타입(관리자, 일반 이용자)
+// pro_url : 프로필 url
+// pw_salt : 비밀번호 해쉬 솔트
 
 // 회원가입
 router.post("/signup", (req, res) => {
@@ -87,7 +84,7 @@ router.post("/nickname_check", (req, res) => {
         res.status(500).send('Internal Server  Error');
       }
       //console.log(result[0].user_name);
-      res.send(result);
+      res.send(result); // 닉네임 데이터
     });
 });
 
@@ -113,23 +110,23 @@ router.post("/login", (req, res) => {
         if(hashedPw === result[0].user_password){
           res.cookie("user", jwtToken.token);
           res.json({
-            result: "ok",
+            result: "ok", // 로그인 성공
             accessToken: jwtToken.token,
             refreshToken : jwtToken.refreshToken
           })
         }
         else if(!result){
-          res.json({
+          res.json({  // 로그인 실패(아이디 없음)
             result: "id missed"
           })
         }
         else if(hashedPw != result[0].user_password){
-          res.json({
+          res.json({  // 로그인 실패(비밀번호 틀림)
             result: "pw missed"
           })
         }
         else{
-          res.json({
+          res.json({  // 나머지 오류일시 db데이터 전부 send
             result: result
           })
         }

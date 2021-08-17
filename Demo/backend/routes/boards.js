@@ -16,18 +16,16 @@ app.use(express.json())
 //          Boards
 //=================================
 
-// router.get("/auth", auth, (req, res) => {
-//     res.status(200).json({
-//         _id: req.user._id,
-//         isAdmin: req.user.role === 0 ? false : true,
-//         isAuth: true,
-//         email: req.user.email,
-//         name: req.user.name,
-//         lastname: req.user.lastname,
-//         role: req.user.role,
-//         image: req.user.image,
-//     });
-// });
+//      앱 완성시 지워야됨
+// boards
+// no : 게시글 번호
+// user_no : 유저 번호
+// board_title : 게시글 제목
+// board_description : 
+// board_contents : 게시글 내용
+// board_date : 게시글 작성 날짜
+// board_update : 게시글 수정 날짜
+// board_like : 게시글 좋아요
 
 //boards 화면
 router.post("/", (req, res) => {
