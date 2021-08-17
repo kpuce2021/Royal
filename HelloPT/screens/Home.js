@@ -35,7 +35,7 @@ function Home({navigation}) {
         <View style={{ padding: 20 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={{ fontWeight: 'bold', fontSize: 15 }}>챌린지 랭킹</Text>
-            <Text>더보기 ></Text>
+            <Text>더보기 </Text>
           </View>
 
           <Spacer top={10} />
@@ -61,7 +61,7 @@ function Home({navigation}) {
         <View style={{ padding: 20 }}>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Text style={{ fontWeight: 'bold', fontSize: 15 }}>게시판</Text>
-            <Text>더보기 ></Text>
+            <Text>더보기 </Text>
           </View>
 
           {

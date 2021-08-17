@@ -7,9 +7,9 @@ const port = 8080
 const cors = require('cors');
 const bodyParser = require('body-parser')
 const spawn = require('child_process').spawn; 
-const tf = require("@tensorflow/tfjs-node");
+//const tf = require("@tensorflow/tfjs-node");
 //const tf = require("@tensorflow/tfjs");
-const {loadGraphModel} = require('@tensorflow/tfjs-converter');
+//const {loadGraphModel} = require('@tensorflow/tfjs-converter');
 
 const challengeRouter = require('./routes/challenge');
 const exerciseRouter = require('./routes/exercise');

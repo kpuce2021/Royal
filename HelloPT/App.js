@@ -18,10 +18,12 @@ import Detect from './screens/Detect/Detect'
 import DetectDetail from './screens/Detect/DetectDetail'
 import Profile from './screens/Profile'
 import EditProfile from './screens/EditProfile.js';
-import Posts from './screens/Post/Posts'
 import Post from './screens/Post/Post'
 import CalendarView from './screens/Calendars/CalendarView'
 import CreatePost from './screens/Post/CreatePost.js';
+
+import Posts from './screens/Post/Posts'
+
 
 
 function CalendarStack() {

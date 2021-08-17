@@ -58,8 +58,16 @@ function Login({ navigation }){
   }
 
   const onClick = () => {
-    
+    axios.post('http://127.0.0.1:8080/login/login', {
+      user_id: inputs.userId,
+      user_password: inputs.password
+    }).then( res => {
+       console.log("backend 응답",res);
+      }).catch(err => 
+        console.log("backend 에러",err)
+      );
   }
+
   return (
   console.log(inputs),
   <View style={styles.container}>
@@ -102,7 +110,7 @@ function Login({ navigation }){
             marginTop: 10}}
           onPress={() => navigation.navigate('Home')}
             >
-          <Text style={{ color: 'white', fontSize: 20}}>로그인</Text>
+          <Text style={{ color: 'white', fontSize: 20}} >로그인</Text>
         </TouchableOpacity>
 
         <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop: 10}}>
