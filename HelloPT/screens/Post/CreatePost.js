@@ -5,7 +5,7 @@ function CreatePost(navigation) {
   const state = useNavigationState(state => state);
   return(
     <View>
-      <text>test</text>
+      <text>testsss</text>
     </View>
   )
 }
