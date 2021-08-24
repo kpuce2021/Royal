@@ -10,7 +10,7 @@ function CreatePost(props) {
   return(
     <View>
       <View backgroudColor='#ffffff'>
-        <Header mode='stack' title="게시글 작성하기"/>
+        <Header navigation={props.navigation} mode='stack' title="게시글 작성하기"/>
       </View>
      <View style={{ paddingHorizontal: 20 }}>
        <TextInput
