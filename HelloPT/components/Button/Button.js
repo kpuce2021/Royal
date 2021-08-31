@@ -14,7 +14,7 @@ function Button({ back, padding, border, color, text, onClick }) {
           justifyContent: 'center', 
           alignItems: 'center', 
           borderRadius: 10 }}
-          onClick={() => onClick()}
+          onPress={() => onClick()}
         >
         <Text style={{ fontWeight: 'bold', color: color ? color : 'white' }}>{text}</Text>
       </TouchableOpacity>

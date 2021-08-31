@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 const db_info = {
-    host: '127.0.0.1',
+    host: 'database-1.cu4l9m7ygyls.ap-northeast-2.rds.amazonaws.com',
     port: '3306',
-    user: 'root',
-    password: '1234',
-    database: 'test',
+    user: 'admin',
+    password: 'abc123456',
+    database: 'hello_pt',
     multipleStatements: true
 }
 

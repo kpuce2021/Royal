@@ -57,15 +57,16 @@ function Login({ navigation }){
     })
   }
 
-  const onClick = () => {
-    axios.post('http://127.0.0.1:8080/login/login', {
+  const onLogin = () => {
+    axios.post('http://172.30.1.56:8080/login/login', {
       user_id: inputs.userId,
       user_password: inputs.password
     }).then( res => {
-       console.log("backend 응답",res);
-      }).catch(err => 
-        console.log("backend 에러",err)
-      );
+      console.log("backend 응답",res);
+      navigation.navigate('Home', { userId: inputs.userId })
+    }).catch(err => 
+      console.log("backend 에러",err)
+    );
   }
 
   return (
@@ -108,7 +109,7 @@ function Login({ navigation }){
             alignItems: 'center', 
             borderRadius: 10,
             marginTop: 10}}
-          onPress={() => navigation.navigate('Home')}
+            onPress={onLogin}
             >
           <Text style={{ color: 'white', fontSize: 20}} >로그인</Text>
         </TouchableOpacity>
