@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 
-module.exports = {
+module.exports = { 
   /* signup 시 password를 보내고 salt와 hashed를 반환 */
     encrypt: async (password) => {
         return new Promise(async (resolve, reject) => {

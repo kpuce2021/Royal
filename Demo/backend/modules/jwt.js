@@ -5,7 +5,7 @@ const options = require('../config/secretKey').options;
 const TOKEN_EXPIRED = -3;
 const TOKEN_INVALID = -2;
 
-module.exports = {
+module.exports = { 
     sign: (user) => {
         /* 현재는 id를 payload로 넣었음 */
         const payload = {
