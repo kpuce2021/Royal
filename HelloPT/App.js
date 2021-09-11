@@ -7,87 +7,131 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 // import { createBottomTabNavigator } from 'react-navigation-tabs';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 // ---- screens
 import Login from './screens/Login.js'
+import SignUp from './screens/SignUp'
 import Splash from './screens/Splash.js'
-import Main from './screens/Main.js'
-import Icon from 'react-native-vector-icons/Ionicons';
+import Home from './screens/Home.js'
+import Detect from './screens/Detect/Detect'
+import DetectDetail from './screens/Detect/DetectDetail'
+import Profile from './screens/Profile'
+import EditProfile from './screens/EditProfile.js';
+import Post from './screens/Post/Post'
+import CalendarView from './screens/Calendars/CalendarView'
+import CreatePost from './screens/Post/CreatePost.js';
 
-function SignUp(){
-  return(
-    <View>
-      <Text>회원가입</Text>
-    </View>
-  )
-}
+import Posts from './screens/Post/Posts'
 
-function Detect() {
+
+
+function CalendarStack() {
+  const Stack = createStackNavigator();
   return(
-    <View>
-      <Text>측정</Text>
-    </View>
-  )
-}
-function calendar() {
-  return(
-    <View>
-      <Text>캘린더</Text>
-    </View>
+    <Stack.Navigator headerMode='none'>
+      <Stack.Screen name='Calendar' component={CalendarView} />
+    </Stack.Navigator>
   )
 }
 
-function Post() {
+function PostStack() {
+  const Stack = createStackNavigator();
   return(
-    <View>
-      <Text>포스트</Text>
-    </View>
+    <Stack.Navigator headerMode='none'>
+      <Stack.Screen name='Posts' component={Posts} />
+      <Stack.Screen name="Post" component={Post} />
+      <Stack.Screen name="CreatePost" component={CreatePost} />
+    </Stack.Navigator>
   )
 }
 
-function Profile() {
+function ProfileStack() {
+  const Stack = createStackNavigator();
   return(
-    <View>
-      <Text>프로필</Text>
-    </View>
+    <Stack.Navigator headerMode='none'>
+      <Stack.Screen name="Profile" component={Profile}/>
+      <Stack.Screen name="EditProfile" component={EditProfile}/>
+    </Stack.Navigator>
   )
 }
+
 function HomeStack() {
   const Stack = createStackNavigator();
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={Main} />
+    <Stack.Navigator headerMode='none'>
+      <Stack.Screen name="Home" component={Home} />
     </Stack.Navigator>
   )
 }
 function LoginStack() {
   const Stack = createStackNavigator();
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} options={{ tabBarVisible: false}}/>
+    <Stack.Navigator headerMode='none'>
+      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="SignUp" component={SignUp} />
     </Stack.Navigator>
   )
 }
+function DetectStack() {
+  const Stack = createStackNavigator();
+  return(
+    <Stack.Navigator headerMode='none'>
+      <Stack.Screen name="Detect" component={Detect} />
+      <Stack.Screen name="Detail" component={DetectDetail} />
+      <Stack.Screen name="Splash" component={Splash} />
+    </Stack.Navigator>
+  )
+}
+
 function BottomTab() {
   const Tab = createBottomTabNavigator();
   return(
-    <Tab.Navigator>
-      <Tab.Screen name="홈" component={HomeStack}/>
-      <Tab.Screen name="측정" component={Detect} />
-      <Tab.Screen name="캘린더" component={calendar}/>
-      <Tab.Screen name="게시판" component={Post}/>
-      <Tab.Screen name="프로필" component={Profile}/>
+    <Tab.Navigator tabBarOptions={{ activeTintColor: "#2e64b0"}}>
+      <Tab.Screen name="Main" component={HomeStack} 
+        options={{ title: '홈', 
+          tabBarIcon: ({ focused, color, size}) => {
+            return focused ? <Icon name="home" size={25} color="#2e64b0"/> : <Icon name="home-outline" size={25} />
+      }}}/>
+      <Tab.Screen name="Detect" component={DetectStack} 
+        options={{ title: '측정', 
+          tabBarIcon: ({ focused, color, size }) => {
+            return focused ? <Icon name="body" size={25} color="#2e64b0"/> : <Icon name="body-outline" size={25} />
+        }}}/>
+      <Tab.Screen name="Calendar" component={CalendarStack} 
+        options={{ title: '캘린더',
+          tabBarIcon: ({ focused, color, size }) => {
+            return focused ? <Icon name="calendar" size={25} color="#2e64b0"/> : <Icon name="calendar-outline" size={25} />
+        }}}/>
+      <Tab.Screen name="Post" component={PostStack}
+        initialRouteName={Posts}
+        options={{ title: '게시판',
+          tabBarIcon: ({ focused, color, size }) => {
+            return focused ? <Icon name="clipboard" size={25} color="#2e64b0" /> : <Icon name="clipboard-outline" size={25} />
+        }}}/>
+      <Tab.Screen name="Profile" component={ProfileStack} 
+        options={{ title: '프로필',
+          tabBarIcon: ({ focused, color, size }) => {
+            return focused ? <Icon name="person-circle-sharp" size={25} color="#2e64b0" /> : <Icon name="person-circle-outline" size={25} />
+        }}}/>
     </Tab.Navigator>
   )
 }
 export default function App() {
-  const [isTocken, setTocken] = useState(false)
+  const [isTocken, setTocken] = useState(true)
+  const Stack = createStackNavigator();
+  const onLogin = () => {
+    setTocken(true)
+  }
   return(
     <NavigationContainer>
-      {
-        isTocken ? <LoginStack /> : <BottomTab />
-      }
+      {/* {
+        isTocken ? <LoginStack onLogin={onLogin}/> : <BottomTab />
+      } */}
+      <Stack.Navigator headerMode='none'>
+        <Stack.Screen name="Login" component={LoginStack} />
+        <Stack.Screen name="Home" component={BottomTab} />
+      </Stack.Navigator>
     </NavigationContainer>
   )
 }
