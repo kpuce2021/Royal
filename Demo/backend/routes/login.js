@@ -110,7 +110,7 @@ router.post("/login", (req, res) => {
         if(hashedPw === result[0].user_password){
           res.cookie("user", jwtToken.token);
           res.json({
-            result: "ok", // 로그인 성공
+            result: result, // 로그인 성공
             accessToken: jwtToken.token,
             refreshToken : jwtToken.refreshToken
           })

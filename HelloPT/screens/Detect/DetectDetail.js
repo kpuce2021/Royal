@@ -58,7 +58,7 @@ function DetectDetail(props) {
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         console.log("You can use the camera");
-        props.navigation.navigate('Splash',{'number': number, 'isChallenge': isChallenge, 'isRecord': isRecord, 'uri': props.route.params.uri})
+        props.navigation.navigate('Splash',{'id': props.route.params.id, 'number': number, 'isChallenge': isChallenge, 'isRecord': isRecord, 'uri': props.route.params.uri})
       } else {
         console.log("Camera permission denied");
       }

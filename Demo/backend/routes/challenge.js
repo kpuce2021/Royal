@@ -49,7 +49,7 @@ router.post("/save", (req, res) => {
 router.post("/rank", (req, res) => {
   var user_no = req.body.user_no;
   var ex_no = req.body.ex_no;
-  var sql = 'SELECT user_no, ch_count, RANK() OVER(ORDER BY ch_count) AS ch_rank FROM Challenge;';
+  var sql = 'SELECT user_no, ch_count, RANK() OVER(ORDER BY ch_count DESC) AS ch_rank FROM Challenge;';
   conn.query(sql, [user_no, ex_no], function(err, result, field){
       if(err){
         console.log(err);
@@ -63,7 +63,7 @@ router.post("/rank", (req, res) => {
 router.post("/profile", (req, res) => {
   var user_no = req.body.user_no;
 
-  var sql = 'SELECT ch_no, user_no, ex_no, ch_count, RANK() OVER(ORDER BY ch_count) AS ch_rank FROM Challenge WHERE user_no=?;';
+  var sql = 'SELECT ch_no, user_no, ex_no, ch_count, RANK() OVER(ORDER BY ch_count DESC) AS ch_rank FROM Challenge WHERE user_no=?;';
   conn.query(sql, [user_no], function(err, result, field){
       if(err){
         console.log(err);
@@ -78,13 +78,17 @@ router.post("/profile", (req, res) => {
 router.post("/result", (req, res) => {
   var user_no = req.body.user_no;
   var ex_no = req.body.ex_no;
-  var sql = 'SELECT ch_no, user_no, ex_no, ch_count, RANK() OVER(ORDER BY ch_count) AS ch_rank FROM Challenge WHERE user_no=?, ex_no=? ORDER BY no DESC';
+  console.log(user_no, ex_no)
+  var sql = 'SELECT * FROM Challenge WHERE user_no=? AND ex_no=? ORDER BY ch_no DESC';
+  //var sql = 'SELECT ch_no, user_no, ex_no, ch_count, RANK() OVER(ORDER BY ch_count DESC) AS ch_rank FROM Challenge WHERE user_no=? AND ex_no=? ORDER BY ch_no DESC';
   conn.query(sql, [user_no, ex_no], function(err, result, field){
       if(err){
         console.log(err);
         res.status(500).send('Internal Server  Error');
       }
-      res.send(result);
+      res.json({
+        result: result
+      })
     });
 });
 

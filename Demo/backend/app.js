@@ -25,8 +25,8 @@ db_config.connect(conn);
 
 
 app.use('/challenge',challengeRouter);
-// app.use('/exercise',exerciseRouter);
-// app.use('/home',homeRouter);
+app.use('/exercise',exerciseRouter);
+app.use('/home',homeRouter);
 app.use('/login',loginRouter);
 app.use('/mypage',mypageRouter);
 

@@ -32,7 +32,7 @@ function ExerciseList({navigation}){
         Exlists.map(exlist => {
           return(
             <View key={exlist.id} style={{ borderBottomWidth: 1, borderBottomColor: '#ffffff' }}>
-              <TouchableWithoutFeedback key={exlist.id} onPress={()=> navigation.navigate('Detail', { title: `${exlist.title}`, video: `${exlist.video}`, uri: `${exlist.uri}`})}>
+              <TouchableWithoutFeedback key={exlist.id} onPress={()=> navigation.navigate('Detail', {id: `${exlist.id}`, title: `${exlist.title}`, video: `${exlist.video}`, uri: `${exlist.uri}`})}>
                 <View>
                   <ImageBackground source={exlist.image} style={{ width: '100%', height: 200 }}/>
                   <View  style={{ padding: 50, position: 'absolute' }}>

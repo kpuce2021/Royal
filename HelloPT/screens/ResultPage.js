@@ -14,6 +14,7 @@ import axios from 'axios'
 
 
 function ResultPage(props) {
+  let resultJSON;
 
   // const [data, setData] = useState(null)
   // const onClick = () => {
@@ -23,11 +24,12 @@ function ResultPage(props) {
   // }
 
   const onClick = () => {
-    axios.post('http://10.0.2.2:8082/challenge/result', {
+    axios.post('http://10.0.2.2:8080/challenge/result', {
       user_no: 3,
-      ex_no: props.ex_no
+      ex_no: props.route.params.ex_no
     }).then( res => {
-      console.log(res)
+      resultJSON = JSON.parse(res.request._response).result[0]
+      console.log(resultJSON)
     }).catch(err => 
       console.log("backend 에러",err)
     );

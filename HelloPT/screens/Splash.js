@@ -38,7 +38,7 @@ function Splash(props) {
   setInterval(function() { 
     time++;
     if(time == 10)
-      props.navigation.navigate('ResultPage',{ex_no: props.id}); 
+      props.navigation.navigate('ResultPage',{'ex_no': props.route.params.id}); 
   }, 1000);
   return(
     // <View
