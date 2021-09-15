@@ -29,13 +29,11 @@ app.use(express.json())
 //challenge 기록 저장
 router.post("/save", (req, res) => {
   const challengeObj = {
-    ch_no : null,
     user_no : req.body.user_no,
     ex_no : req.body.ex_no,
-    ch_rank : req.body.ch_rank,
     ch_count : req.body.ch_count,
   };
-    var sql = 'INSERT INTO challenge SET ?';
+    var sql = 'INSERT INTO Challenge SET ?';
 
     conn.query(sql, challengeObj, function(err, result, field){
         if(err){
@@ -51,7 +49,36 @@ router.post("/save", (req, res) => {
 router.post("/rank", (req, res) => {
   var user_no = req.body.user_no;
   var ex_no = req.body.ex_no;
-  var sql = 'SELECT * FROM challenge WHERE user_no=?, ex_no=?';
+  var sql = 'SELECT user_no, ch_count, RANK() OVER(ORDER BY ch_count) AS ch_rank FROM Challenge;';
+  conn.query(sql, [user_no, ex_no], function(err, result, field){
+      if(err){
+        console.log(err);
+        res.status(500).send('Internal Server  Error');
+      }
+      res.send(result);
+    });
+});
+
+// challenge ranking profile
+router.post("/profile", (req, res) => {
+  var user_no = req.body.user_no;
+
+  var sql = 'SELECT ch_no, user_no, ex_no, ch_count, RANK() OVER(ORDER BY ch_count) AS ch_rank FROM Challenge WHERE user_no=?;';
+  conn.query(sql, [user_no], function(err, result, field){
+      if(err){
+        console.log(err);
+        res.status(500).send('Internal Server  Error');
+      }
+      res.send(result);
+    });
+});
+
+
+// estimation challenge result
+router.post("/result", (req, res) => {
+  var user_no = req.body.user_no;
+  var ex_no = req.body.ex_no;
+  var sql = 'SELECT ch_no, user_no, ex_no, ch_count, RANK() OVER(ORDER BY ch_count) AS ch_rank FROM Challenge WHERE user_no=?, ex_no=? ORDER BY no DESC';
   conn.query(sql, [user_no, ex_no], function(err, result, field){
       if(err){
         console.log(err);

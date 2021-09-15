@@ -44,7 +44,7 @@ router.post("/", (req, res) => {
 //boards 읽기
 router.post("/read", (req, res) => {
     const board_no = req.body.board_no;
-    var sql = 'SELECT * FROM boards WHERE no = ?';
+    var sql = 'SELECT * FROM Boards WHERE no = ?';
   
     conn.query(sql, [board_no], function(err, result, field){
         if(err){
@@ -59,7 +59,6 @@ router.post("/read", (req, res) => {
 //board 작성
 router.post("/write", (req, res) => {
   const boardObj = {
-    board_no : req.body.board_no,
     user_no : req.body.user_no,
     board_title : req.body.board_title,
     board_description : req.body.board_description,
@@ -69,8 +68,8 @@ router.post("/write", (req, res) => {
     board_like : 0,
   }
 
-  var sql = 'INSERT INTO boards SET ?';
-  conn.query(sql, function(err, result, field){
+  var sql = 'INSERT INTO Boards SET ?';
+  conn.query(sql,[boardObj], function(err, result, field){
       if(err){
         console.log(err);
         res.status(500).send('Internal Server  Error');
@@ -89,7 +88,7 @@ router.post("/update", (req, res) => {
   const board_no = req.body.board_no;
   const user_no = req.body.user_no;
 
-  var sql = 'UPDATE board SET ? WHERE no = ? AND user_no = ?';
+  var sql = 'UPDATE Boards SET ? WHERE no = ? AND user_no = ?';
 
   conn.query(sql, [boardObj, board_no, user_no], function(err, result, field){
       if(err){

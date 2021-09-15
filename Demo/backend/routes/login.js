@@ -116,17 +116,17 @@ router.post("/login", (req, res) => {
           })
         }
         else if(!result){
-          res.json({  // 로그인 실패(아이디 없음)
+          res.error({  // 로그인 실패(아이디 없음)
             result: "id missed"
           })
         }
         else if(hashedPw != result[0].user_password){
-          res.json({  // 로그인 실패(비밀번호 틀림)
+          res.error({  // 로그인 실패(비밀번호 틀림)
             result: "pw missed"
           })
         }
         else{
-          res.json({  // 나머지 오류일시 db데이터 전부 send
+          res.error({  // 나머지 오류일시 db데이터 전부 send
             result: result
           })
         }

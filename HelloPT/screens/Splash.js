@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react';
 import { View,Text, SafeAreaView,PermissionsAndroid } from 'react-native'
-import { WebView } from 'react-native-webview'
+import { WebView } from 'react-native-webview';
 
-function Splash() {
-  useEffect(() => {
-    requestCameraPermission()
-  }, [])
+
+function Splash(props) {
+  console.log(props)
+  let time = 0;
+
+
+  // useEffect(() => {
+  //   requestCameraPermission()
+  // }, [])
   const requestCameraPermission = async () => {
     try {
       const granted = await PermissionsAndroid.request(
@@ -30,6 +35,11 @@ function Splash() {
       console.warn(err);
     }
   };
+  setInterval(function() { 
+    time++;
+    if(time >= 90)
+      props.navigation.navigate('SignUp'); 
+  }, 1000);
   return(
     // <View
     //   style={{ borderWidth: 1, borderColor: 'red', width: '100%', height:'100%'}}>
@@ -37,11 +47,32 @@ function Splash() {
     // </View> 
     <WebView
       style={{ width:'100%', height: '100%', borderWidth: 1, borderColor: 'red'}}
+      name='webView'
       mediaPlaybackRequiresUserAction={false}
       javaScriptEnabled={true}
       useWebKit
       originWhitelist={['*']}
-      source={{ uri: 'https://pensive-cori-825c30.netlify.app/' }} />
+      onMessage= {event => alert(event.nativeEvent.data)}
+      // onNavigationStateChange={(e) => {
+      //   console.warn("current state is ", JSON.stringify(e, null, 2));
+      //   /** put your comdition here based here and close webview.
+      //    Like if(e.url.indexOf("end_url") > -1)
+      //    Then close webview
+      //    */
+      // }}
+      startInLoadingState
+      // props.uri
+      source={{ uri: 'https://ecstatic-jennings-34f5c6.netlify.app/?number='+ props.number +'&isChallenge='+props.isChallenge+'&isRecord='+props.isRecord+'&time='+60}}
+      // onLoadEnd={()=>{
+      //   /* add you work that you want to do after loading is done. */
+      //   }}
+      // ref={handleSetRef}
+      //  // 웹뷰 로딩이 시작되거나 끝나면 호출하는 함수 navState로 url 감지
+      //  onNavigationStateChange={onNavigationStateChange}
+      //  // 처음 호출한 URL에서 다시 Redirect하는 경우에, 사용하면 navState url 감지
+      //  onShouldStartLoadWithRequest={onShouldStartLoadWithRequest}
+    />
+    
   )
 }
 

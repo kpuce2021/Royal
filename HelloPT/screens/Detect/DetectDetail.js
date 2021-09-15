@@ -1,12 +1,22 @@
 import React, { useCallback, useState } from 'react'
-import { Switch, TouchableWithoutFeedback, PermissionsAndroid, Alert } from 'react-native'
+import { Switch, TouchableWithoutFeedback, PermissionsAndroid, Alert, InputAccessoryView } from 'react-native'
 import Header from '../../components/Header/Header'
 import YoutubePlayer from 'react-native-youtube-iframe'
 
 function DetectDetail(props) {
+  const [inputs, setInputs] = useState({
+    number: ''
+  });
   const [isChallenge, setIsChallenge] = useState(false);
   const [isRecord, setIsRecord] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const onChangeNumber = (e, name) => {
+    setInputs({
+      ...inputs,
+      [name] : e.nativeEvent.text
+    })
+
+  }
   const toggleChallenge = () => {
     setIsChallenge(!isChallenge)
   }
@@ -32,7 +42,7 @@ function DetectDetail(props) {
      console.log('checkPermissions result', result);        
     });
    }
-  const requestCameraPermission = async () => {
+  const requestCameraPermission = async (number, isChallenge, isRecord) => {
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.CAMERA,
@@ -48,7 +58,7 @@ function DetectDetail(props) {
       );
       if (granted === PermissionsAndroid.RESULTS.GRANTED) {
         console.log("You can use the camera");
-        props.navigation.navigate('Splash')
+        props.navigation.navigate('Splash',{'number': number, 'isChallenge': isChallenge, 'isRecord': isRecord, 'uri': props.route.params.uri})
       } else {
         console.log("Camera permission denied");
       }
@@ -85,6 +95,9 @@ function DetectDetail(props) {
             <Text style={{ fontSize: 15}}>{props.route.params.title} 갯수 조정 (최대 1000개)</Text>
             <TextInput 
               style={{ borderWidth: 1, borderColor: '#000000', borderRadius: 10, padding: 5}}
+              value= {inputs.number}
+              name="number"
+              onChange = {text => onChangeNumber(text,'number')}
               placeholder={props.route.params.title}/>
           </View>
           
@@ -113,7 +126,7 @@ function DetectDetail(props) {
           </View>
         </View>
         
-        <TouchableWithoutFeedback onPress={requestCameraPermission}>
+        <TouchableWithoutFeedback onPress={() => requestCameraPermission(inputs.number, isChallenge, isRecord)}>
           <View style={{ marginTop: 20, marginBottom: 30, backgroundColor: '#9e1111', borderRadius: 5, height: 50 , justifyContent: 'center', alignItems: 'center'}}> 
             <Text style={{ color: '#ffffff'}}>측정하기</Text>
           </View>
