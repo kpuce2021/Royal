@@ -29,7 +29,7 @@ app.use(express.json())
 
 //boards 화면
 router.post("/", (req, res) => {
-  var sql = 'SELECT * FROM boards ORDER BY no DESC';
+  var sql = 'SELECT * FROM Boards ORDER BY no DESC';
 
   conn.query(sql, function(err, result, field){
       if(err){
