@@ -24,7 +24,7 @@ function ResultPage(props) {
   //   })
   // }
 
-  
+  const onClick = () => {
     axios.post('http://10.0.2.2:8080/challenge/result', {
       user_no: 3,
       ex_no: props.route.params.ex_no
@@ -34,6 +34,7 @@ function ResultPage(props) {
     }).catch(err => 
       console.log("backend 에러",err)
     );
+  }
 
   resultJSON = {"ch_count": 6, "ch_no": 464, "ch_rank": 1, "ex_no": 3, "user_no": 3}
 
@@ -44,47 +45,60 @@ function ResultPage(props) {
         <View>
           <View justifyContent="center">
             <TouchableOpacity
-              // onPress={onClick}
-              >
-              <Text style={{backgroundColor: '#dee0dc', fontSize:25, width: 370, fontWeight: 'bold', marginLeft: 20, marginTop:20, textAlign: 'center', padding: 13}}>
+              onPress={onClick}>
+              <Text style={{backgroundColor: '#dee0dc', fontSize:35, width: 370, fontWeight: 'bold', marginLeft: 20, marginTop:20, textAlign: 'center', padding: 13}}>
                 나의 측정 결과는?</Text>
             </TouchableOpacity>
           </View>
+          <View>
+            <Text></Text>
+          </View>
   
-          <View flexDirection="row" justifyContent="center">
-            <Text 
+          <View flexDirection="row" justifyContent="center" backgroundColor='#dbc3db'>
+            {/* <Text 
               style={{borderRadius: 10, marginTop: 10, fontSize: 17, backgroundColor: '#ffffff', width: 80, marginBottom: 10}}>
                 EXERCISE
-            </Text>
+            </Text> */}
             <Text
-              style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 150, marginBottom: 10}}>
-                SQAUT
+              style={{fontStyle: 'italic', fontWeight: 'bold', marginTop: 25, fontSize: 29, marginBottom: 25}}>
+                "PUSH UP"
+            </Text>
+          </View>
+
+          <View>
+              <Text></Text>
+            </View>
+  
+          <View flexDirection="row" justifyContent="center">
+            <Text 
+              style={{fontWeight: 'bold', borderRadius: 10, marginTop: 30, fontSize:26, width: 130, marginBottom: 30}}>
+                내 운동기록
+            </Text>
+            <Text 
+              style={{borderRadius: 10, marginTop: 30, marginLeft: 40, fontSize: 25, marginBottom: 30}}>
+                {resultJSON.ch_count}회
             </Text>
           </View>
   
           <View flexDirection="row" justifyContent="center">
             <Text 
-              style={{borderRadius: 10, marginTop: 10, fontSize: 17, backgroundColor: '#ffffff', width: 80, marginBottom: 10}}>
-                COUNT
-            </Text>
-            <Text 
-              style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 150, marginBottom: 10}}>
-                {resultJSON.ch_count}
-            </Text>
-          </View>
-  
-          <View flexDirection="row" justifyContent="center">
-            <Text 
-              style={{borderRadius: 10, marginTop: 10, fontSize: 17, backgroundColor: '#ffffff', width: 80, marginBottom: 10}}>
+              style={{fontWeight: 'bold', borderRadius: 10, marginTop: 30, fontSize: 26, width: 130, marginBottom: 30}}>
                 RANK
             </Text>
             <Text 
-              style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 150, marginBottom: 10}}>
-                {resultJSON.ch_rank}
+              style={{borderRadius: 10, marginTop: 30, fontSize: 25, marginBottom: 30}}>
+                {resultJSON.ch_rank}위
             </Text>
           </View>
   
           <View>
+            <View>
+              <Text></Text>
+            </View>
+            <View>
+              <Text></Text>
+            </View>
+
             <TouchableOpacity
               style={{ 
                 backgroundColor: '#f00e61', 
@@ -112,47 +126,60 @@ function ResultPage(props) {
         <View>
           <View justifyContent="center">
             <TouchableOpacity
-              // onPress={onClick}
-              >
-              <Text style={{backgroundColor: '#dee0dc', fontSize:25, width: 370, fontWeight: 'bold', marginLeft: 20, marginTop:20, textAlign: 'center', padding: 13}}>
+              onPress={onClick}>
+              <Text style={{backgroundColor: '#dee0dc', fontSize:35, width: 370, fontWeight: 'bold', marginLeft: 20, marginTop:20, textAlign: 'center', padding: 13}}>
                 나의 측정 결과는?</Text>
             </TouchableOpacity>
           </View>
+          <View>
+            <Text></Text>
+          </View>
   
-          <View flexDirection="row" justifyContent="center">
-            <Text 
+          <View flexDirection="row" justifyContent="center" backgroundColor='#dbc3db'>
+            {/* <Text 
               style={{borderRadius: 10, marginTop: 10, fontSize: 17, backgroundColor: '#ffffff', width: 80, marginBottom: 10}}>
                 EXERCISE
-            </Text>
+            </Text> */}
             <Text
-              style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 150, marginBottom: 10}}>
-                SIDE LEG RAISE
+              style={{fontStyle: 'italic', fontWeight: 'bold', marginTop: 25, fontSize: 29, marginBottom: 25}}>
+                "SIDE LEG RAISE"
+            </Text>
+          </View>
+
+          <View>
+              <Text></Text>
+            </View>
+  
+          <View flexDirection="row" justifyContent="center">
+            <Text 
+              style={{fontWeight: 'bold', borderRadius: 10, marginTop: 30, fontSize:26, width: 130, marginBottom: 30}}>
+                내 운동기록
+            </Text>
+            <Text 
+              style={{borderRadius: 10, marginTop: 30, marginLeft: 40, fontSize: 25, marginBottom: 30}}>
+                {resultJSON.ch_count}회
             </Text>
           </View>
   
           <View flexDirection="row" justifyContent="center">
             <Text 
-              style={{borderRadius: 10, marginTop: 10, fontSize: 17, backgroundColor: '#ffffff', width: 80, marginBottom: 10}}>
-                COUNT
-            </Text>
-            <Text 
-              style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 150, marginBottom: 10}}>
-                {resultJSON.ch_count}
-            </Text>
-          </View>
-  
-          <View flexDirection="row" justifyContent="center">
-            <Text 
-              style={{borderRadius: 10, marginTop: 10, fontSize: 17, backgroundColor: '#ffffff', width: 80, marginBottom: 10}}>
+              style={{fontWeight: 'bold', borderRadius: 10, marginTop: 30, fontSize: 26, width: 130, marginBottom: 30}}>
                 RANK
             </Text>
             <Text 
-              style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 150, marginBottom: 10}}>
-                {resultJSON.ch_rank}
+              style={{borderRadius: 10, marginTop: 30, fontSize: 25, marginBottom: 30}}>
+                {resultJSON.ch_rank}위
             </Text>
           </View>
   
           <View>
+            <View>
+              <Text></Text>
+            </View>
+            <View>
+              <Text></Text>
+            </View>
+
             <TouchableOpacity
               style={{ 
                 backgroundColor: '#f00e61', 
@@ -180,11 +207,13 @@ function ResultPage(props) {
         <View>
           <View justifyContent="center">
             <TouchableOpacity
-              // onPress={onClick}
-              >
+              onPress={onClick}>
               <Text style={{backgroundColor: '#dee0dc', fontSize:35, width: 370, fontWeight: 'bold', marginLeft: 20, marginTop:20, textAlign: 'center', padding: 13}}>
                 나의 측정 결과는?</Text>
             </TouchableOpacity>
+          </View>
+          <View>
+            <Text></Text>
           </View>
   
           <View flexDirection="row" justifyContent="center" backgroundColor='#dbc3db'>
@@ -193,34 +222,45 @@ function ResultPage(props) {
                 EXERCISE
             </Text> */}
             <Text
-              style={{fontStyle: 'italic', fontWeight: 'bold', marginTop: 25, marginLeft: 40, fontSize: 25, width: 150, marginBottom: 25}}>
-                "SQAUT"
+              style={{fontStyle: 'italic', fontWeight: 'bold', marginTop: 25, fontSize: 29, marginBottom: 25}}>
+                "SQUAT"
             </Text>
           </View>
+
+          <View>
+              <Text></Text>
+            </View>
   
           <View flexDirection="row" justifyContent="center">
             <Text 
-              style={{borderRadius: 10, marginTop: 10, fontSize: 25, width: 130, marginBottom: 10}}>
+              style={{fontWeight: 'bold', borderRadius: 10, marginTop: 30, fontSize:26, width: 130, marginBottom: 30}}>
                 내 운동기록
             </Text>
             <Text 
-              style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, width: 150, marginBottom: 10}}>
+              style={{borderRadius: 10, marginTop: 30, marginLeft: 40, fontSize: 25, marginBottom: 30}}>
                 {resultJSON.ch_count}회
             </Text>
           </View>
   
           <View flexDirection="row" justifyContent="center">
             <Text 
-              style={{borderRadius: 10, marginTop: 10, fontSize: 25, width: 130, marginBottom: 10}}>
+              style={{fontWeight: 'bold', borderRadius: 10, marginTop: 30, fontSize: 26, width: 130, marginBottom: 30}}>
                 RANK
             </Text>
             <Text 
-              style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, width: 150, marginBottom: 10}}>
+              style={{borderRadius: 10, marginTop: 30, fontSize: 25, marginBottom: 30}}>
                 {resultJSON.ch_rank}위
             </Text>
           </View>
   
           <View>
+            <View>
+              <Text></Text>
+            </View>
+            <View>
+              <Text></Text>
+            </View>
+
             <TouchableOpacity
               style={{ 
                 backgroundColor: '#f00e61', 
