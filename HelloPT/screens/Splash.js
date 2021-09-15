@@ -4,7 +4,7 @@ import { WebView } from 'react-native-webview';
 
 
 function Splash(props) {
-  console.log(props)
+  console.log('props>>>>>>>>>>>>>>>>', props)
   let time = 0;
 
 
@@ -37,8 +37,8 @@ function Splash(props) {
   };
   setInterval(function() { 
     time++;
-    if(time >= 90)
-      props.navigation.navigate('SignUp'); 
+    if(time == 10)
+      props.navigation.navigate('ResultPage',{ex_no: props.id}); 
   }, 1000);
   return(
     // <View
