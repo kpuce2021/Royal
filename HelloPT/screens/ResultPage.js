@@ -39,8 +39,56 @@ function ResultPage(props) {
     <View>
       <Header navigation={props.navigation} mode="stack" title="결과" />
       <View>
-        <View>
-          <Text>test</Text>
+        <View justifyContent="center">
+          <TouchableOpacity
+            onPress={onClick}>
+            <Text style={{backgroundColor: '#dee0dc', fontSize:18, width: 215, fontWeight: 'bold', marginLeft: 20, marginTop:20, textAlign: 'center'}}>
+              결과 값 가져오기</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View flexDirection="row">
+          <Text 
+            style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 80, marginBottom: 10}}>
+              데이터 값1
+          </Text>
+          <Text 
+            style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 150, marginBottom: 10}}>
+              데이터 값1
+          </Text>
+        </View>
+
+        <View flexDirection="row">
+          <Text 
+            style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 80, marginBottom: 10}}>
+              데이터 값2
+          </Text>
+          <Text 
+            style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 150, marginBottom: 10}}>
+              데이터 값2
+          </Text>
+        </View>
+
+        <View flexDirection="row">
+          <Text 
+            style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 80, marginBottom: 10}}>
+              데이터 값3
+          </Text>
+          <Text 
+            style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 150, marginBottom: 10}}>
+              데이터 값3
+          </Text>
+        </View>
+
+        <View flexDirection="row">
+          <Text 
+            style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 80, marginBottom: 10}}>
+              데이터 값4
+          </Text>
+          <Text 
+            style={{borderRadius: 10, marginTop: 10, marginLeft: 40, fontSize: 17, backgroundColor: '#ffffff', width: 150, marginBottom: 10}}>
+              데이터 값4
+          </Text>
         </View>
 
         <View>
@@ -58,10 +106,9 @@ function ResultPage(props) {
               onPress={() => props.navigation.navigate('Detect')}
               // onPress={onClick}
               >
-          <Text style={{ color: 'white', fontSize: 20}} >돌아가기</Text>
-        </TouchableOpacity>
-        <Button onClick={onClick}>불러오기</Button>
-      </View>
+            <Text style={{ color: 'white', fontSize: 20}} >돌아가기</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   )
