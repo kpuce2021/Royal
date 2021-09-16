@@ -49,7 +49,7 @@ function SignUp(props) {
 
   const onSignUp = () => {
     console.log('클릭됨')
-    axios.post('http://172.30.1.56:8080/login/signup',{
+    axios.post('http://13.125.28.252:8080/login/signup',{
       user_id: inputs.userId,
       user_password: inputs.password,
       user_name: inputs.username,

@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { View,Text, SafeAreaView,PermissionsAndroid } from 'react-native'
+import React, { useState, useEffect } from 'react';
+import { View,Text, SafeAreaView,PermissionsAndroid, ProgressViewIOSComponent } from 'react-native'
 import { WebView } from 'react-native-webview';
 
 
 function Splash(props) {
   console.log('props>>>>>>>>>>>>>>>>', props)
-  let time = 0;
+  const [clock, setClock] = useState(0)
 
 
   // useEffect(() => {
@@ -35,11 +35,14 @@ function Splash(props) {
       console.warn(err);
     }
   };
-  setInterval(function() { 
-    time++;
-    if(time == 10)
-      props.navigation.navigate('ResultPage',{'ex_no': props.route.params.id}); 
-  }, 1000);
+  // setInterval(function() { 
+  //   setClock(clock + 1)
+  //   console.log('clock state',clock);
+  //   if(clock == 90) props.navigation.navigate('ResultPage',{'ex_no': props.route.params.id}); 
+  // }, 1000);
+  setTimeout(() => {
+    props.navigation.navigate('ResultPage',{'ex_no': props.route.params.id});
+  }, 90000)
   return(
     // <View
     //   style={{ borderWidth: 1, borderColor: 'red', width: '100%', height:'100%'}}>
@@ -62,7 +65,7 @@ function Splash(props) {
       // }}
       startInLoadingState
       // props.uri
-      source={{ uri: 'https://ecstatic-jennings-34f5c6.netlify.app/?number='+ props.number +'&isChallenge='+props.isChallenge+'&isRecord='+props.isRecord+'&time='+60}}
+      source={{ uri: props.route.params.uri + '?number='+ props.route.params.number +'&isChallenge='+props.route.params.isChallenge+'&isRecord='+props.route.params.isRecord+'&time='+60}}
       // onLoadEnd={()=>{
       //   /* add you work that you want to do after loading is done. */
       //   }}

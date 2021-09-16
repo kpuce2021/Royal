@@ -58,7 +58,7 @@ function Login({ navigation }){
   }
 
   const onLogin = () => {
-    axios.post('http://10.0.2.2:8080/login/login', {
+    axios.post('http://13.125.28.252:8080/login/login', {
       user_id: inputs.userId,
       user_password: inputs.password
     }).then( res => {

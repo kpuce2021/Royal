@@ -22,9 +22,9 @@ export default Detect
 
 function ExerciseList({navigation}){
   const Exlists = [
-    {id:1, title:'푸시업', image: pushup, video: 'fh4y5dGZX9c', uri: ''}, 
-    {id:2, title:'사이드 레그레이즈', image: legraise, video: 'WX_4GXf5wW0', uri: ''}, 
-    {id:3, title:'스쿼트', image: squart, video: '3ErJUc3umfI', uri: ''}, 
+    {id:1, title:'푸시업', image: pushup, video: 'fh4y5dGZX9c', uri: 'https://ecstatic-bassi-1bb59a.netlify.app/'}, 
+    {id:2, title:'사이드 레그레이즈', image: legraise, video: 'WX_4GXf5wW0', uri: 'https://jovial-nobel-25248a.netlify.app/'}, 
+    {id:3, title:'스쿼트', image: squart, video: '3ErJUc3umfI', uri: 'https://unruffled-elion-f5c341.netlify.app/'}, 
   ]
   return(
     <View>

@@ -105,7 +105,7 @@ function BottomTab() {
             return focused ? <Icon name="calendar" size={25} color="#2e64b0"/> : <Icon name="calendar-outline" size={25} />
         }}}/>
       <Tab.Screen name="Post" component={PostStack}
-        initialRouteName={Posts}
+        initialRouteName={Post}
         options={{ title: '게시판',
           tabBarIcon: ({ focused, color, size }) => {
             return focused ? <Icon name="clipboard" size={25} color="#2e64b0" /> : <Icon name="clipboard-outline" size={25} />

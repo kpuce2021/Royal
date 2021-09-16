@@ -30,7 +30,7 @@ function CreatePost(props) {
 
   const onComplete = () => {
     // console.log('게시판 버튼')
-    axios.post('http://10.0.2.2:8082/boards/write', {
+    axios.post('http://13.125.28.252:8080/boards/write', {
       board_title : inputs.boardTitle,
       board_contents : inputs.boardContent,
       board_description: '',
