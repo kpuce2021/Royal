@@ -110,23 +110,23 @@ router.post("/login", (req, res) => {
         if(hashedPw === result[0].user_password){
           res.cookie("user", jwtToken.token);
           res.json({
-            result: "ok", // 로그인 성공
+            result: result, // 로그인 성공
             accessToken: jwtToken.token,
             refreshToken : jwtToken.refreshToken
           })
         }
         else if(!result){
-          res.json({  // 로그인 실패(아이디 없음)
+          res.error({  // 로그인 실패(아이디 없음)
             result: "id missed"
           })
         }
         else if(hashedPw != result[0].user_password){
-          res.json({  // 로그인 실패(비밀번호 틀림)
+          res.error({  // 로그인 실패(비밀번호 틀림)
             result: "pw missed"
           })
         }
         else{
-          res.json({  // 나머지 오류일시 db데이터 전부 send
+          res.error({  // 나머지 오류일시 db데이터 전부 send
             result: result
           })
         }

@@ -12,7 +12,7 @@ import dayjs from "dayjs";
 function Post(props) {
   const [Lists, setLists] = useState([])
   useEffect(() => {
-    axios.post('http://10.0.2.2:8080/boards/')
+    axios.post('http://13.125.28.252:8080/boards/')
     .then(res => {
       console.log('response',res)
       setLists(res.data)

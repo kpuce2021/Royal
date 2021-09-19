@@ -14,6 +14,7 @@ const spawn = require('child_process').spawn;
 const challengeRouter = require('./routes/challenge');
 const exerciseRouter = require('./routes/exercise');
 const homeRouter = require('./routes/home');
+const boardsRouter = require('./routes/boards');
 const loginRouter = require('./routes/login');
 const mypageRouter = require('./routes/mypage');
 
@@ -23,9 +24,10 @@ app.use(express.json())
 db_config.connect(conn);
 
 
-//app.use('/challenge',challengeRouter);
-// app.use('/exercise',exerciseRouter);
-// app.use('/home',homeRouter);
+app.use('/challenge',challengeRouter);
+app.use('/exercise',exerciseRouter);
+app.use('/home',homeRouter);
+app.use('/boards',boardsRouter);
 app.use('/login',loginRouter);
 app.use('/mypage',mypageRouter);
 

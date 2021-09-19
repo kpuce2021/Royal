@@ -58,7 +58,7 @@ function Login({ navigation }){
   }
 
   const onLogin = () => {
-    axios.post('http://172.30.1.56:8080/login/login', {
+    axios.post('http://13.125.28.252:8080/login/login', {
       user_id: inputs.userId,
       user_password: inputs.password
     }).then( res => {
@@ -110,6 +110,7 @@ function Login({ navigation }){
             borderRadius: 10,
             marginTop: 10}}
             onPress={onLogin}
+            //onPress={() => navigation.navigate('Home', { userId: inputs.userId })}
             >
           <Text style={{ color: 'white', fontSize: 20}} >로그인</Text>
         </TouchableOpacity>

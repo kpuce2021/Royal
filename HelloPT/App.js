@@ -23,7 +23,7 @@ import CalendarView from './screens/Calendars/CalendarView'
 import CreatePost from './screens/Post/CreatePost.js';
 
 import Posts from './screens/Post/Posts'
-
+import ResultPage from './screens/ResultPage';
 
 
 function CalendarStack() {
@@ -80,6 +80,7 @@ function DetectStack() {
       <Stack.Screen name="Detect" component={Detect} />
       <Stack.Screen name="Detail" component={DetectDetail} />
       <Stack.Screen name="Splash" component={Splash} />
+      <Stack.Screen name="ResultPage" component={ResultPage} />
     </Stack.Navigator>
   )
 }
@@ -104,7 +105,7 @@ function BottomTab() {
             return focused ? <Icon name="calendar" size={25} color="#2e64b0"/> : <Icon name="calendar-outline" size={25} />
         }}}/>
       <Tab.Screen name="Post" component={PostStack}
-        initialRouteName={Posts}
+        initialRouteName={Post}
         options={{ title: '게시판',
           tabBarIcon: ({ focused, color, size }) => {
             return focused ? <Icon name="clipboard" size={25} color="#2e64b0" /> : <Icon name="clipboard-outline" size={25} />
